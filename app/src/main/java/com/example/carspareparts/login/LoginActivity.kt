@@ -3,18 +3,20 @@ package com.example.carspareparts.login
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.lifecycle.Observer
 import com.example.carspareparts.MainActivity
 import com.example.carspareparts.R
-import com.example.carspareparts.emailverify.ResetPasswordActivity
+import com.example.carspareparts.User
+import com.example.carspareparts.resetpassword.ResetPasswordActivity
 import com.example.carspareparts.signup.SignUpActivity
-import com.parse.ParseUser
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
-
+    lateinit var loginViewModel:LoginViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        loginViewModel= LoginViewModel()
         forgetPasswordTextView.setOnClickListener {
             Intent(this, ResetPasswordActivity::class.java).apply {
                 startActivity(this)
@@ -27,14 +29,16 @@ class LoginActivity : AppCompatActivity() {
             }
         loginBtn.setOnClickListener {
             if(emailValidation()||passwordValidation()) return@setOnClickListener
-            ParseUser.logInInBackground(userNameLoginEditText.text.toString()
-                ,passwordLoginEditText.text?.toString()) { user, e ->
-                if(e==null){
-                 Intent(this, MainActivity::class.java).apply { startActivity(this) }
-                    finish()
-                }
+            loginViewModel.userLogin(User(userNameLoginEditText.text.toString(),
+                passwordLoginEditText.text.toString(),null))
+
             }
+        loginViewModel.loginResult().observe(this, Observer {
+            if (it==null){
+                Intent(this, MainActivity::class.java).apply { startActivity(this) }
+                finish()
             }
+        })
 
     }
     private fun passwordValidation(): Boolean {

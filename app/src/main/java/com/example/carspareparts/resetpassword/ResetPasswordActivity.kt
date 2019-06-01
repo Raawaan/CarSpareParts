@@ -1,31 +1,31 @@
-package com.example.carspareparts.emailverify
+package com.example.carspareparts.resetpassword
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.carspareparts.MainActivity
+import androidx.lifecycle.Observer
 import com.example.carspareparts.R
 import com.example.carspareparts.isValidEmailAddress
 import com.example.carspareparts.login.LoginActivity
-import com.parse.ParseUser
 import kotlinx.android.synthetic.main.activity_reset_password.*
 
 class ResetPasswordActivity : AppCompatActivity() {
-
+    lateinit var resetPasswordViewModel: ResetPasswordViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reset_password)
+        resetPasswordViewModel= ResetPasswordViewModel()
         resetPasswordBtn.setOnClickListener {
             if(!emailValidation()){
-                ParseUser.requestPasswordResetInBackground(emailResetEditText.text.toString()
-                ) {
-                    if(it==null){
-                        Intent(this, LoginActivity::class.java).apply { startActivity(this) }
-                        finish()
-                    }
+                resetPasswordViewModel.resetPassword(emailResetEditText.text.toString())
                 }
             }
-        }
+        resetPasswordViewModel.resetPasswordResult().observe(this, Observer {
+            if(it==null){
+                Intent(this, LoginActivity::class.java).apply { startActivity(this) }
+                finish()
+            }
+        })
     }
 
     private fun emailValidation(): Boolean {
