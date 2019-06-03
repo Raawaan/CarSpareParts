@@ -2,10 +2,7 @@
     <string name="app_name">Car SpareParts</string>
     <string name="back4app_server_url">https://parseapi.back4app.com/</string>
 
+    <!-- Change the following strings as required -->
     <string name="back4app_app_id">OKRgQ0F54aXsxndtaazxo4fskKCvXeYciHDo11S3</string>
     <string name="back4app_client_key">gyg3OgG646l7262v9aa62b6GWJhMtB8iRozhGWPl</string>
-    <string name="password_confirmation">password confirmation</string>
-    <string name="password">password</string>
-    <string name="email">Email</string>
-    <string name="user_name">User Name</string>
 </resources>
