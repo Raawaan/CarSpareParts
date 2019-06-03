@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.Observer
-import com.example.carspareparts.MainActivity
+import com.example.carspareparts.main.MainActivity
 import com.example.carspareparts.User
 import com.example.carspareparts.isValidEmailAddress
 import kotlinx.android.synthetic.main.activity_sign_up.*
@@ -33,7 +33,9 @@ class SignUpActivity : AppCompatActivity() {
             }
             signUpViewModel.signUpResult().observe(this, Observer {
                 if (it == null) {
-                    Intent(this, MainActivity::class.java).apply { startActivity(this) }
+                   val intent= Intent(this, MainActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(intent)
                     finish()
                     }
                 else

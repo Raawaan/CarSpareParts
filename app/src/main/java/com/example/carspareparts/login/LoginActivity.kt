@@ -3,12 +3,14 @@ package com.example.carspareparts.login
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.lifecycle.Observer
-import com.example.carspareparts.MainActivity
+import com.example.carspareparts.main.MainActivity
 import com.example.carspareparts.R
 import com.example.carspareparts.User
 import com.example.carspareparts.resetpassword.ResetPasswordActivity
 import com.example.carspareparts.signup.SignUpActivity
+import com.parse.ParseUser
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
@@ -16,6 +18,13 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        val user= ParseUser.getCurrentUser()
+        if (user!=null){
+            Intent(this, MainActivity::class.java).apply {
+                startActivity(this)
+            }
+            finish()
+        }
         loginViewModel= LoginViewModel()
         forgetPasswordTextView.setOnClickListener {
             Intent(this, ResetPasswordActivity::class.java).apply {
@@ -38,6 +47,8 @@ class LoginActivity : AppCompatActivity() {
                 Intent(this, MainActivity::class.java).apply { startActivity(this) }
                 finish()
             }
+            else
+                Toast.makeText(this,it.message,Toast.LENGTH_LONG).show()
         })
 
     }

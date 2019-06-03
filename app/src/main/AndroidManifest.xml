@@ -13,6 +13,13 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+        <activity android:name=".sparepartproducts.SparePartProductsActivity">
+        </activity>
+        <activity
+                android:name=".main.MainActivity"
+                android:label="@string/title_activity_home"
+                android:theme="@style/AppTheme.NoActionBar">
+        </activity>
         <activity android:name=".resetpassword.ResetPasswordActivity">
         </activity>
         <activity android:name=".login.LoginActivity">
@@ -23,8 +30,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".signup.SignUpActivity">
-        </activity>
-        <activity android:name=".MainActivity">
         </activity>
 
         <meta-data
