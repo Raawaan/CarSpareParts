@@ -28,15 +28,16 @@ class SparePartProductViewModel:ViewModel(){
                     sparePartDetails.add(SparePartDetails(sparePartClass.getString("name"),
                         sparePartTypeClass.getString("type"),
                         it.getInt("price"),sparePartClass.getString("description"),
-                        parseUser?.getString("username"))
+                        parseUser?.getString("username"),sparePartClass.getString("product_image"))
                     )
                 }
             }
             sparePartDetailsLiveData.postValue(sparePartDetails)
 
         }
-        fun getSparePartDetails(): MutableLiveData<List<SparePartDetails>> {
-            return sparePartDetailsLiveData
-        }
+
+    }
+    fun getSparePartDetails(): MutableLiveData<List<SparePartDetails>> {
+        return sparePartDetailsLiveData
     }
 }

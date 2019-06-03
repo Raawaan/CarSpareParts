@@ -32,9 +32,9 @@ class HomeFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         homeFragmentViewModel=HomeFragmentViewModel()
         homeFragmentViewModel.getSparePartTypeList()
+        listOfSparePartTypeRecyclerView.layoutManager = LinearLayoutManager(activity)
         homeFragmentViewModel.getSparePartTypeLiveData().observe(this, Observer {
             if(it !is ParseException){
-            listOfSparePartTypeRecyclerView.layoutManager = LinearLayoutManager(activity)
             sparePartTypeAdapter = SparePartTypeAdapter(it) {
                 val intent = Intent(activity, SparePartProductsActivity::class.java)
                 intent.putExtra("objectId",it.first)
