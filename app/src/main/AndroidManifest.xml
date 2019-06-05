@@ -16,7 +16,7 @@
         <activity android:name=".sparepartdetails.SparePartDetailsActivity"
         android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".sparepartproducts.SparePartProductsActivity"
+        <activity android:name=".sparepartproducts.SparePartProductsFragment"
                   android:screenOrientation="portrait">
         </activity>
         <activity

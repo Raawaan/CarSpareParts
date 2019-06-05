@@ -18,7 +18,17 @@ import com.parse.ParseUser
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_home.*
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+
+
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,ReplaceFragment {
+    override fun replaceFragmentListener(fragment: Fragment,pair: Pair<String,String?>) {
+        val bundle = Bundle()
+        bundle.putString("objectId", pair.first)
+        bundle.putString("typeName", pair.second)
+        fragment.arguments=bundle
+        replaceFragments(fragment)
+    }
+
     lateinit var mainViewModel: MainViewModel
     lateinit var homeFragment: HomeFragment
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -95,4 +105,5 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.fragmentPlaceholder, fragment).commit()
     }
+
 }

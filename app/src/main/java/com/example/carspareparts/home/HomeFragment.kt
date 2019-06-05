@@ -10,16 +10,20 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.carspareparts.R
-import com.example.carspareparts.sparepartproducts.SparePartProductsActivity
+import com.example.carspareparts.main.MainActivity
+import com.example.carspareparts.sparepartproducts.SparePartProductsFragment
 import com.parse.ParseException
 import kotlinx.android.synthetic.main.home_fragment.*
 
 
 class HomeFragment : Fragment() {
+
     private lateinit var sparePartTypeAdapter: SparePartTypeAdapter
     private lateinit var homeFragmentViewModel: HomeFragmentViewModel
     companion object {
         fun newInstance() = HomeFragment()
+
+
     }
 
     override fun onCreateView(
@@ -37,10 +41,9 @@ class HomeFragment : Fragment() {
         homeFragmentViewModel.getSparePartTypeLiveData().observe(this, Observer {
             if(it !is ParseException){
             sparePartTypeAdapter = SparePartTypeAdapter(it) {
-                val intent = Intent(activity, SparePartProductsActivity::class.java)
-                intent.putExtra("objectId",it.first)
-                intent.putExtra("typeName",it.second)
-                startActivity(intent)
+                (activity as MainActivity).replaceFragmentListener(SparePartProductsFragment.newInstance(),it)
+//                intent.putExtra("objectId",it.first)
+//                intent.putExtra("typeName",it.second)
                 true
             }
                 listOfSparePartTypeRecyclerView.adapter = sparePartTypeAdapter
