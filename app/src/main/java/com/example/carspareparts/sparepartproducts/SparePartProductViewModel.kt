@@ -12,6 +12,7 @@ class SparePartProductViewModel:ViewModel(){
     private val sparePartDetailsLiveData= MutableLiveData<List<SparePartDetails>>()
     private val sparePartDetails= mutableListOf<SparePartDetails>()
     fun getProductsByType(objectId:String){
+        sparePartDetails.clear()
         val parseSparePartQuery= ParseQuery<ParseObject>("supplier_spare_part")
         parseSparePartQuery.include("spare_part_id")
         parseSparePartQuery.include("supplier_id")

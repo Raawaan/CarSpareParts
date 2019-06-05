@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.example.carspareparts.main.MainActivity
 import com.example.carspareparts.R
 import com.example.carspareparts.User
@@ -25,7 +26,7 @@ class LoginActivity : AppCompatActivity() {
             }
             finish()
         }
-        loginViewModel= LoginViewModel()
+        loginViewModel= ViewModelProviders.of(this).get(LoginViewModel::class.java)
         forgetPasswordTextView.setOnClickListener {
             Intent(this, ResetPasswordActivity::class.java).apply {
                 startActivity(this)

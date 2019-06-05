@@ -10,6 +10,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
 import com.example.carspareparts.R
 import com.example.carspareparts.home.HomeFragment
 import com.example.carspareparts.login.LoginActivity
@@ -24,7 +25,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
-        mainViewModel= MainViewModel()
+        mainViewModel= ViewModelProviders.of(this).get(MainViewModel::class.java)
 
         setUserNameAndEmailToNavDrawer()
         attachHomeFragment()

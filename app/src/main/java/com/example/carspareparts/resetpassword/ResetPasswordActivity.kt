@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.example.carspareparts.R
 import com.example.carspareparts.isValidEmailAddress
 import com.example.carspareparts.login.LoginActivity
@@ -14,7 +15,7 @@ class ResetPasswordActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reset_password)
-        resetPasswordViewModel= ResetPasswordViewModel()
+        resetPasswordViewModel= ViewModelProviders.of(this).get(ResetPasswordViewModel::class.java)
         resetPasswordBtn.setOnClickListener {
             if(!emailValidation()){
                 resetPasswordViewModel.resetPassword(emailResetEditText.text.toString())

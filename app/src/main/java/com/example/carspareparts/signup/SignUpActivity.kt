@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.example.carspareparts.main.MainActivity
 import com.example.carspareparts.User
 import com.example.carspareparts.isValidEmailAddress
@@ -17,7 +18,7 @@ class SignUpActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(com.example.carspareparts.R.layout.activity_sign_up)
-        signUpViewModel= SignUpViewModel()
+        signUpViewModel= ViewModelProviders.of(this).get(SignUpViewModel::class.java)
         signUpBtn.setOnClickListener {
             if (userNameValidation()|| emailValidation()|| passwordValidation()||
                 passwordConfirmationValidation()||passwordMatcherValidation())

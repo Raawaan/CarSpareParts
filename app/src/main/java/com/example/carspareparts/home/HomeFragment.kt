@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.carspareparts.R
 import com.example.carspareparts.sparepartproducts.SparePartProductsActivity
@@ -30,7 +31,7 @@ class HomeFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        homeFragmentViewModel=HomeFragmentViewModel()
+        homeFragmentViewModel= ViewModelProviders.of(this).get(HomeFragmentViewModel::class.java)
         homeFragmentViewModel.getSparePartTypeList()
         listOfSparePartTypeRecyclerView.layoutManager = LinearLayoutManager(activity)
         homeFragmentViewModel.getSparePartTypeLiveData().observe(this, Observer {

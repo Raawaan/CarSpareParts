@@ -13,25 +13,31 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".sparepartdetails.SparePartDetailsActivity">
+        <activity android:name=".sparepartdetails.SparePartDetailsActivity"
+        android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".sparepartproducts.SparePartProductsActivity">
+        <activity android:name=".sparepartproducts.SparePartProductsActivity"
+                  android:screenOrientation="portrait">
         </activity>
         <activity
                 android:name=".main.MainActivity"
                 android:label="@string/title_activity_home"
+                android:screenOrientation="portrait"
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity android:name=".resetpassword.ResetPasswordActivity">
+        <activity android:name=".resetpassword.ResetPasswordActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".login.LoginActivity">
+        <activity android:name=".login.LoginActivity"
+                  android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".signup.SignUpActivity">
+        <activity android:name=".signup.SignUpActivity"
+                  android:screenOrientation="portrait">
         </activity>
 
         <meta-data
