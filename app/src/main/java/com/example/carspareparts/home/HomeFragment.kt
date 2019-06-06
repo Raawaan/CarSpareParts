@@ -1,5 +1,6 @@
 package com.example.carspareparts.home
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -13,6 +14,7 @@ import com.example.carspareparts.R
 import com.example.carspareparts.main.MainActivity
 import com.example.carspareparts.sparepartproducts.SparePartProductsFragment
 import com.parse.ParseException
+import kotlinx.android.synthetic.main.app_bar_home.*
 import kotlinx.android.synthetic.main.home_fragment.*
 
 
@@ -36,14 +38,21 @@ class HomeFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         homeFragmentViewModel= ViewModelProviders.of(this).get(HomeFragmentViewModel::class.java)
+
         homeFragmentViewModel.getSparePartTypeList()
         listOfSparePartTypeRecyclerView.layoutManager = LinearLayoutManager(activity)
         homeFragmentViewModel.getSparePartTypeLiveData().observe(this, Observer {
             if(it !is ParseException){
             sparePartTypeAdapter = SparePartTypeAdapter(it) {
-                (activity as MainActivity).replaceFragmentListener(SparePartProductsFragment.newInstance(),it)
-//                intent.putExtra("objectId",it.first)
-//                intent.putExtra("typeName",it.second)
+                val fragment= SparePartProductsFragment.newInstance()
+                val bundle = Bundle()
+                bundle.putString("objectId", it.first)
+                bundle.putString("typeName", it.second)
+                fragment.arguments=bundle
+                val fragmentTransaction = activity?.supportFragmentManager?.beginTransaction()
+                fragmentTransaction?.replace(R.id.fragmentPlaceholder, fragment)
+                fragmentTransaction?.addToBackStack(null)
+                fragmentTransaction?.commit()
                 true
             }
                 listOfSparePartTypeRecyclerView.adapter = sparePartTypeAdapter

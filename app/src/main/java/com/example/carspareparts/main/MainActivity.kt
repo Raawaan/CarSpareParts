@@ -20,22 +20,17 @@ import kotlinx.android.synthetic.main.app_bar_home.*
 
 
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,ReplaceFragment {
-    override fun replaceFragmentListener(fragment: Fragment,pair: Pair<String,String?>) {
-        val bundle = Bundle()
-        bundle.putString("objectId", pair.first)
-        bundle.putString("typeName", pair.second)
-        fragment.arguments=bundle
-        replaceFragments(fragment)
-    }
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+
 
     lateinit var mainViewModel: MainViewModel
     lateinit var homeFragment: HomeFragment
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setSupportActionBar(toolbar)
         mainViewModel= ViewModelProviders.of(this).get(MainViewModel::class.java)
+        toolbar?.title= "Available Categories"
+        setSupportActionBar(toolbar)
 
         setUserNameAndEmailToNavDrawer()
         attachHomeFragment()
