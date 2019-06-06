@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,6 +23,9 @@ class HomeFragment : Fragment() {
 
     private lateinit var sparePartTypeAdapter: SparePartTypeAdapter
     private lateinit var homeFragmentViewModel: HomeFragmentViewModel
+    private val fragment:Fragment by lazy {
+        SparePartProductsFragment.newInstance()
+    }
     companion object {
         fun newInstance() = HomeFragment()
 
@@ -44,7 +48,6 @@ class HomeFragment : Fragment() {
         homeFragmentViewModel.getSparePartTypeLiveData().observe(this, Observer {
             if(it !is ParseException){
             sparePartTypeAdapter = SparePartTypeAdapter(it) {
-                val fragment= SparePartProductsFragment.newInstance()
                 val bundle = Bundle()
                 bundle.putString("objectId", it.first)
                 bundle.putString("typeName", it.second)
@@ -61,6 +64,12 @@ class HomeFragment : Fragment() {
 //                Toast.makeText(context,it.message,Toast.LENGTH_LONG).show()
 //            }
         })
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        activity?.toolbar ?.title= "Available Categories"
 
     }
 
