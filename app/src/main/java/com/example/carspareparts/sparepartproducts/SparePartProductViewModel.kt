@@ -20,7 +20,6 @@ class SparePartProductViewModel:ViewModel(){
         parseSparePartQuery.findInBackground { objects, e ->
             objects.forEach {
                 val sparePartClass = it.getParseObject("spare_part_id")
-
                 val sparePartSupplierClass = it.getParseObject("supplier_id")
                  val parseUser = sparePartSupplierClass?.getParseUser("user_id")?.fetchIfNeeded()
                 val sparePartTypeClass = sparePartClass?.
