@@ -7,10 +7,15 @@ import com.parse.ParseQuery
 
 class HomeFragmentViewModel : ViewModel() {
     private val sparePartTypeList = MutableLiveData<List<ParseObject>>()
+    private val set= mutableSetOf<String?>()
     fun getSparePartTypeList(){
-        val sparePartTypeQuery = ParseQuery<ParseObject>("spare_part_type")
+        val sparePartTypeQuery = ParseQuery<ParseObject>("spare_part")
+        sparePartTypeQuery.include("spare_part_type_id")
         sparePartTypeQuery.findInBackground { objects, e ->
             if (e==null){
+                objects.forEach {
+                    set.add(it.getString("spare_part_type_id"))
+                }
                 sparePartTypeList.postValue(objects)
             }
 //            else

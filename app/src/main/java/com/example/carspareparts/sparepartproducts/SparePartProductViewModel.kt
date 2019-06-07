@@ -2,6 +2,7 @@ package com.example.carspareparts.sparepartproducts
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.carspareparts.SparePartDetails
 import com.parse.ParseObject
 import com.parse.ParseQuery
 
@@ -25,10 +26,13 @@ class SparePartProductViewModel:ViewModel(){
                 val sparePartTypeClass = sparePartClass?.
                     getParseObject("spare_part_type_id")?.fetchIfNeeded<ParseObject>()
                 if(sparePartTypeClass?.objectId==objectId) {
-                    sparePartDetails.add(SparePartDetails(sparePartClass.getString("name"),
-                        sparePartTypeClass.getString("type"),
-                        it.getInt("price"),sparePartClass.getString("description"),
-                        parseUser?.getString("username"),sparePartClass.getString("product_image"))
+                    sparePartDetails.add(
+                        SparePartDetails(
+                            sparePartClass.getString("name"),
+                            sparePartTypeClass.getString("type"),
+                            it.getInt("price"), sparePartClass.getString("description"),
+                            parseUser?.getString("username"), sparePartClass.getString("product_image")
+                        )
                     )
                 }
             }

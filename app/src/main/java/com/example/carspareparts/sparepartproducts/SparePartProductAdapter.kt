@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.carspareparts.R
+import com.example.carspareparts.SparePartDetails
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.spare_part_details_content.view.*
 
@@ -14,7 +15,7 @@ import kotlinx.android.synthetic.main.spare_part_details_content.view.*
 class SparePartProductAdapter(private val sparePartDetails: List<SparePartDetails>,
                               private val clickListener:(SparePartDetails)->Boolean): RecyclerView.Adapter<SparePartProductAdapter.SparePartProductHolderView>(){
     open class SparePartProductHolderView(itemView: View):RecyclerView.ViewHolder(itemView){
-        fun bind(sparePartDetails: SparePartDetails,clickListener: (SparePartDetails) -> Boolean){
+        fun bind(sparePartDetails: SparePartDetails, clickListener: (SparePartDetails) -> Boolean){
             itemView.setOnClickListener {
                 clickListener(sparePartDetails)
             }

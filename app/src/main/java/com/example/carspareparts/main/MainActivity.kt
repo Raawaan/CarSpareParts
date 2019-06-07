@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        cartView?.getAllInCart()
         mainViewModel= ViewModelProviders.of(this).get(MainViewModel::class.java)
         toolbar?.title= "Available Categories"
         setSupportActionBar(toolbar)
