@@ -13,10 +13,19 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.carspareparts.R
 import com.example.carspareparts.main.MainActivity
+import com.example.carspareparts.resetpassword.ResetPasswordActivity
 import com.example.carspareparts.sparepartproducts.SparePartProductsFragment
 import com.parse.ParseException
+import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.app_bar_home.*
+import kotlinx.android.synthetic.main.cart_details.*
 import kotlinx.android.synthetic.main.home_fragment.*
+import android.R.id
+import android.widget.Button
+import android.R.attr.action
+
+import android.widget.ImageButton
+import com.example.carspareparts.CustomCart
 
 
 class HomeFragment : Fragment() {
@@ -33,14 +42,16 @@ class HomeFragment : Fragment() {
     }
 
     override fun onCreateView(
+
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.home_fragment, container, false)
+        return inflater.inflate(com.example.carspareparts.R.layout.home_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+//        setHasOptionsMenu(true)
         homeFragmentViewModel= ViewModelProviders.of(this).get(HomeFragmentViewModel::class.java)
 
         homeFragmentViewModel.getSparePartTypeList()
@@ -53,7 +64,7 @@ class HomeFragment : Fragment() {
                 bundle.putString("typeName", it.second)
                 fragment.arguments=bundle
                 val fragmentTransaction = activity?.supportFragmentManager?.beginTransaction()
-                fragmentTransaction?.replace(R.id.fragmentPlaceholder, fragment)
+                fragmentTransaction?.replace(com.example.carspareparts.R.id.fragmentPlaceholder, fragment)
                 fragmentTransaction?.addToBackStack(null)
                 fragmentTransaction?.commit()
                 true
@@ -64,6 +75,8 @@ class HomeFragment : Fragment() {
 //                Toast.makeText(context,it.message,Toast.LENGTH_LONG).show()
 //            }
         })
+
+
 
     }
 

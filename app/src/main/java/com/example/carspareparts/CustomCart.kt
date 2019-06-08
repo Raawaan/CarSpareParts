@@ -30,19 +30,19 @@ class CustomCart(context: Context, attrs: AttributeSet?) :ImageView(context, att
 
 
     override fun onDraw(canvas: Canvas?) {
-        val centerX =Math.round(width*0.8f)
-        val centerY=Math.round(height*0.2f)
+        val centerX =width*0.7f
+        val centerY=height*0.2f
         val radius = if(width>height) height*0.2f else width*0.2f
 
         val textOffSetX= textPaint.measureText(value.toString())*0.5f
-        val textOffSetY=textPaint.fontMetrics.ascent*(0.3f)
+        val textOffSetY=textPaint.fontMetrics.ascent*(0.5f)
 
         textPaint.color= Color.WHITE
-        textPaint.textSize=12f*resources.displayMetrics.scaledDensity
-        canvas?.drawCircle(centerX.toFloat(),centerY.toFloat(),radius,paint)
+        textPaint.textSize=10f*resources.displayMetrics.scaledDensity
+        canvas?.drawCircle(centerX,centerY,radius,paint)
 
         paint.typeface=Typeface.create("Arial",Typeface.BOLD)
-        canvas?.drawText(value.toString(),centerX-textOffSetX,centerY-textOffSetY,textPaint)
+        canvas?.drawText(value.toString(),width*0.63f,height*0.3f,textPaint)
 //
 //        val d = resources.getDrawable(R.drawable.ic_shopping_cart_black_24dp, null)
 //        d.setBounds(left, top, right, bottom)

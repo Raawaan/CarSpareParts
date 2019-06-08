@@ -28,7 +28,7 @@ class SparePartProductAdapter(private val sparePartDetails: List<SparePartDetail
         }
         holder.itemView.productName.text=sparePartItemDetails.name
         holder.itemView.productPrice.text=sparePartItemDetails.price.toString()
-        holder.itemView.productType.text=sparePartItemDetails.type
+        holder.itemView.productSupplier.text=sparePartItemDetails.supplierName
         Picasso.get().load(sparePartItemDetails.image).into(holder.itemView.productImageView)
 
     }

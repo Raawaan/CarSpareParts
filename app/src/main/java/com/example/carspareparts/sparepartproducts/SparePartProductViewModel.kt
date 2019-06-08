@@ -9,12 +9,12 @@ import com.parse.ParseQuery
 /**
  * Created by rawan on 02/06/19 .
  */
-class SparePartProductViewModel:ViewModel(){
-    private val sparePartDetailsLiveData= MutableLiveData<List<SparePartDetails>>()
-    private val sparePartDetails= mutableListOf<SparePartDetails>()
-    fun getProductsByType(objectId:String){
+class SparePartProductViewModel : ViewModel() {
+    private val sparePartDetailsLiveData = MutableLiveData<List<SparePartDetails>>()
+    private val sparePartDetails = mutableListOf<SparePartDetails>()
+    fun getProductsByType(objectId: String) {
         sparePartDetails.clear()
-        val parseSparePartQuery= ParseQuery<ParseObject>("supplier_spare_part")
+        val parseSparePartQuery = ParseQuery<ParseObject>("supplier_spare_part")
         parseSparePartQuery.include("spare_part_id")
         parseSparePartQuery.include("supplier_id")
         parseSparePartQuery.include("spare_part_type_id")
@@ -22,16 +22,20 @@ class SparePartProductViewModel:ViewModel(){
             objects.forEach {
                 val sparePartClass = it.getParseObject("spare_part_id")
                 val sparePartSupplierClass = it.getParseObject("supplier_id")
-                 val parseUser = sparePartSupplierClass?.getParseUser("user_id")?.fetchIfNeeded()
-                val sparePartTypeClass = sparePartClass?.
-                    getParseObject("spare_part_type_id")?.fetchIfNeeded<ParseObject>()
-                if(sparePartTypeClass?.objectId==objectId) {
+                val parseUser = sparePartSupplierClass?.getParseUser("user_id")?.fetchIfNeeded()
+                val sparePartTypeClass =
+                    sparePartClass?.getParseObject("spare_part_type_id")?.fetchIfNeeded<ParseObject>()
+                if (sparePartTypeClass?.objectId == objectId) {
                     sparePartDetails.add(
                         SparePartDetails(
                             sparePartClass.getString("name"),
                             sparePartTypeClass.getString("type"),
-                            it.getInt("price"), sparePartClass.getString("description"),
-                            parseUser?.getString("username"), sparePartClass.getString("product_image")
+                            it.getInt("price"),
+                            sparePartClass.objectId,
+                            sparePartSupplierClass?.objectId,
+                            sparePartClass.getString("description"),
+                            parseUser?.getString("username"),
+                            sparePartClass.getString("product_image")
                         )
                     )
                 }
@@ -41,6 +45,7 @@ class SparePartProductViewModel:ViewModel(){
         }
 
     }
+
     fun getSparePartDetails(): MutableLiveData<List<SparePartDetails>> {
         return sparePartDetailsLiveData
     }

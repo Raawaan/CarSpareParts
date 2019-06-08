@@ -12,13 +12,15 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
-import com.example.carspareparts.R
 import com.example.carspareparts.home.HomeFragment
 import com.example.carspareparts.login.LoginActivity
 import com.parse.ParseUser
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_home.*
 
+import com.example.carspareparts.R
+import com.example.carspareparts.cart.CartActivity
+import com.parse.ParseObject
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -26,8 +28,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     lateinit var mainViewModel: MainViewModel
     lateinit var homeFragment: HomeFragment
+
     override fun onCreate(savedInstanceState: Bundle?) {
+
+
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_main)
         cartView?.getAllInCart()
         mainViewModel= ViewModelProviders.of(this).get(MainViewModel::class.java)
@@ -46,7 +52,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toggle.syncState()
 
         nav_view.setNavigationItemSelectedListener(this)
+
+        cartView.setOnClickListener {
+           //Toast.makeText(this, "click", Toast.LENGTH_LONG).show()
+            Intent(this,CartActivity::class.java).also {
+                startActivity(it)
+            }
+        }
     }
+
 
     private fun attachHomeFragment() {
         homeFragment = HomeFragment.newInstance()
@@ -91,6 +105,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 Intent(this,LoginActivity::class.java).apply {
                     startActivity(this)
                 }
+                var pinnedOrders = ParseObject("pinned_orders")
+                pinnedOrders.unpinInBackground()
                 finish()
             }
         }
@@ -98,6 +114,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
     }
+
+
+
     private fun replaceFragments(fragment: Fragment) {
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.fragmentPlaceholder, fragment).commit()

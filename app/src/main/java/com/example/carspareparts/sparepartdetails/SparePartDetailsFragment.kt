@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import com.example.carspareparts.CustomerRequest
 import com.example.carspareparts.R
 import com.example.carspareparts.SparePartDetails
 import com.squareup.picasso.Picasso
@@ -48,23 +47,10 @@ lateinit var sparePartDetailsViewModel: SparePartDetailsViewModel
         sparePartDetailsViewModel.requestResult().observe(this, Observer {
             if(it==null){
                 activity?.cartView?.getAllInCart()
-                Toast.makeText(context,"3ash",Toast.LENGTH_LONG).show()
+                Toast.makeText(context,"Added to Cart",Toast.LENGTH_LONG).show()
             }
             else
                 Toast.makeText(context,it.message,Toast.LENGTH_LONG).show()
-
-        })
-        sparePartDetailsViewModel.getAllInCart()
-        sparePartDetailsViewModel.getLiveDataCart().observe(this, Observer {
-            Toast.makeText(context,it.size.toString(),Toast.LENGTH_LONG).show()
-
-            it.forEach {
-                val cartProduct = it.getString("product_name")
-                Toast.makeText(context,cartProduct,Toast.LENGTH_LONG).show()
-            }
-        })
-        sparePartDetailsViewModel.getStringException().observe(this, Observer {
-            Toast.makeText(context,it,Toast.LENGTH_LONG).show()
 
         })
     }
