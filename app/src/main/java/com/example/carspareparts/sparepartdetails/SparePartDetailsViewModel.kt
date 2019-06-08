@@ -19,6 +19,10 @@ class SparePartDetailsViewModel : ViewModel() {
         cartItem.put("total_price", sparePart.price!!)
         cartItem.put("supplier_id", sparePart.supplierId!!)
         cartItem.put("spare_part_id", sparePart.sparePartId!!)
+        val supplierSparePart =ParseObject("supplier_spare_part")
+        supplierSparePart.put("price", sparePart.price)
+        supplierSparePart.put("supplier_id", sparePart.supplierId)
+        supplierSparePart.put("spare_part_id", sparePart.sparePartId)
 
         val cartQuery = ParseQuery.getQuery<ParseObject>("pinned_order")
         cartQuery.fromLocalDatastore()
@@ -27,6 +31,9 @@ class SparePartDetailsViewModel : ViewModel() {
         cartQuery.findInBackground { objects, e ->
             if (objects.size == 0) {
                 cartItem.pinInBackground {
+                    pinException.postValue(it)
+                }
+                supplierSparePart.pinInBackground {
                     pinException.postValue(it)
                 }
             } else

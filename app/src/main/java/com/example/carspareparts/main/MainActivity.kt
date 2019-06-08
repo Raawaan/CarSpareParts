@@ -21,6 +21,8 @@ import kotlinx.android.synthetic.main.app_bar_home.*
 import com.example.carspareparts.R
 import com.example.carspareparts.cart.CartActivity
 import com.parse.ParseObject
+import com.parse.DeleteCallback
+import com.parse.ParseException
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -101,13 +103,19 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
             }
             R.id.nav_sign_out -> {
-                mainViewModel.userSignOut()
-                Intent(this,LoginActivity::class.java).apply {
-                    startActivity(this)
+                ParseObject.unpinAllInBackground {
+                    if(it!=null)
+                        Toast.makeText(this,it.message,Toast.LENGTH_LONG).show()
+                    else{
+                        mainViewModel.userSignOut()
+
+                        Intent(this,LoginActivity::class.java).apply {
+                            startActivity(this)
+                        }
+                        finish()
+                    }
                 }
-                var pinnedOrders = ParseObject("pinned_orders")
-                pinnedOrders.unpinInBackground()
-                finish()
+
             }
         }
 

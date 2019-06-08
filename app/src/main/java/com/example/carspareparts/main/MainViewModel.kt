@@ -8,6 +8,9 @@ import com.parse.ParseUser
  */
 class MainViewModel :ViewModel(){
     fun userSignOut(){
-        ParseUser.logOut()
+        ParseUser.logOutInBackground {
+            if (it==null)
+                it?.message
+        }
     }
 }

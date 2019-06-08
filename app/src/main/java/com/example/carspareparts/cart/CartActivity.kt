@@ -15,7 +15,6 @@ import kotlinx.android.synthetic.main.cart_details.*
 class CartActivity : AppCompatActivity() {
 
     lateinit var cartAdapter: CartAdapter
-    lateinit var cartActivity: CartActivity
     lateinit var cartViewModel: CartViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {

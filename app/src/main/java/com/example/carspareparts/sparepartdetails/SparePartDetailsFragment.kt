@@ -20,7 +20,6 @@ lateinit var sparePartDetailsViewModel: SparePartDetailsViewModel
     companion object {
         fun newInstance() = SparePartDetailsFragment()
 
-
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
