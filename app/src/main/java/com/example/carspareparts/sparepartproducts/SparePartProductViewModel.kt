@@ -28,11 +28,12 @@ class SparePartProductViewModel : ViewModel() {
                 if (sparePartTypeClass?.objectId == objectId) {
                     sparePartDetails.add(
                         SparePartDetails(
+                            it.objectId,
                             sparePartClass.getString("name"),
                             sparePartTypeClass.getString("type"),
                             it.getInt("price"),
-                            sparePartClass.objectId,
-                            sparePartSupplierClass?.objectId,
+                            sparePartClass,
+                            sparePartSupplierClass,
                             sparePartClass.getString("description"),
                             parseUser?.getString("username"),
                             sparePartClass.getString("product_image")

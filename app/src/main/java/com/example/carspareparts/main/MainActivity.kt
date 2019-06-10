@@ -38,8 +38,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         setContentView(R.layout.activity_main)
         cartView?.getAllInCart()
-        mainViewModel= ViewModelProviders.of(this).get(MainViewModel::class.java)
-        toolbar?.title= "Available Categories"
+        mainViewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+        toolbar?.title = "Available Categories"
         setSupportActionBar(toolbar)
 
         setUserNameAndEmailToNavDrawer()
@@ -56,8 +56,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         nav_view.setNavigationItemSelectedListener(this)
 
         cartView.setOnClickListener {
-           //Toast.makeText(this, "click", Toast.LENGTH_LONG).show()
-            Intent(this,CartActivity::class.java).also {
+            //Toast.makeText(this, "click", Toast.LENGTH_LONG).show()
+            Intent(this, CartActivity::class.java).also {
                 startActivity(it)
             }
         }
@@ -103,26 +103,21 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
             }
             R.id.nav_sign_out -> {
-                ParseObject.unpinAllInBackground {
-                    if(it!=null)
-                        Toast.makeText(this,it.message,Toast.LENGTH_LONG).show()
-                    else{
-                        mainViewModel.userSignOut()
+                mainViewModel.userSignOut()
 
-                        Intent(this,LoginActivity::class.java).apply {
-                            startActivity(this)
-                        }
-                        finish()
-                    }
+                Intent(this, LoginActivity::class.java).apply {
+                    startActivity(this)
                 }
-
+                ParseObject.unpinAllInBackground()
+                finish()
             }
+
+
         }
 
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
     }
-
 
 
     private fun replaceFragments(fragment: Fragment) {

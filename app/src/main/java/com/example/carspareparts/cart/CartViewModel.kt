@@ -3,10 +3,15 @@ package com.example.carspareparts.cart
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel;
+import com.example.carspareparts.CustomCart
 import com.parse.*
 import java.util.*
 import com.parse.ParseObject
 import com.parse.GetCallback
+import java.lang.reflect.Array
+import com.parse.DeleteCallback
+
+
 
 
 class CartViewModel : ViewModel() {
@@ -24,7 +29,7 @@ class CartViewModel : ViewModel() {
         }
     }
 
-    fun getCartLiveData(): MutableLiveData<List<ParseObject>> {
+     fun getCartLiveData(): MutableLiveData<List<ParseObject>> {
         return cartItemsList
     }
 
@@ -37,32 +42,24 @@ class CartViewModel : ViewModel() {
             if (e == null) {
 
                 val order = ParseObject("order")
-                order.put("total_price", total)
-                list?.map {
-                    total += it.getInt("total_price")
-                }
+
                 val relation =  order.getRelation<ParseObject>("products_chosen")
-                val parseQuerySupplier = ParseQuery.getQuery<ParseObject>("supplier_spare_part")
-                parseQuerySupplier.fromLocalDatastore()
-                parseQuerySupplier.findInBackground { objects, e ->
-                    if (e==null)
-                        objects.forEach {
-                            val parseQuerySupplierServer =
-                                ParseQuery.getQuery<ParseObject>("supplier_spare_part")
-                                parseQuerySupplierServer.whereEqualTo("price",it.getInt("price"))
-                                parseQuerySupplierServer.whereEqualTo("supplier_id",it.getString("supplier_id"))
-                                parseQuerySupplierServer.whereEqualTo("spare_part_id",it.getString("spare_part_id"))
-                                parseQuerySupplierServer.getFirstInBackground { `object`, e ->
-                                    if(e==null)
-                                    relation.add(`object`)
-                                }
-                        }
+                list?.forEach {
+                    total += it.getInt("total_price")
+                    val po = ParseObject.createWithoutData("supplier_spare_part",it.getString("supplier_spare_part_id"))
+                    relation.add(po)
+
                 }
+                order.put("total_price", total)
                 order.put("order_date", Date().time)
                 order.put("customer_id", `object`)
                 order.saveInBackground {
                     if (it != null)
                         exception.postValue(it)
+                    else{
+                        ParseObject.unpinAllInBackground()
+
+                    }
                 }
 
             }

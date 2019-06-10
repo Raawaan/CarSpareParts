@@ -19,6 +19,8 @@ class SparePartDetailsViewModel : ViewModel() {
         cartItem.put("total_price", sparePart.price!!)
         cartItem.put("supplier_id", sparePart.supplierId!!)
         cartItem.put("spare_part_id", sparePart.sparePartId!!)
+        cartItem.put("supplier_spare_part_id",sparePart.objectId!!)
+
         val supplierSparePart =ParseObject("supplier_spare_part")
         supplierSparePart.put("price", sparePart.price)
         supplierSparePart.put("supplier_id", sparePart.supplierId)
