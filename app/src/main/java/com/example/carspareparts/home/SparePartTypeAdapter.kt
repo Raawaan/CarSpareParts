@@ -16,10 +16,8 @@ class SparePartTypeAdapter(private val sparePartTypeName: List<ParseObject>,
                            private val clickListener:(Pair<String,String?>)->Boolean): RecyclerView.Adapter<SparePartTypeAdapter.SparePartTypeHolderView>(){
     open class SparePartTypeHolderView(itemView: View):RecyclerView.ViewHolder(itemView){
         fun bind(selectedSparePartType: String,selectedTypeName:String?, clickListener: (Pair<String,String?>) -> Boolean){
-            itemView.setOnClickListener {
                 val pair = Pair(selectedSparePartType,selectedTypeName)
                 clickListener(pair)
-            }
         }
     }
     override fun onBindViewHolder(holder: SparePartTypeHolderView, position: Int) {

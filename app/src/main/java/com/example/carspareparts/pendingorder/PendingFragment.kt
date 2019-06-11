@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.example.carspareparts.R
+import com.example.carspareparts.orderdetails.OrderDetailsFragment
 import kotlinx.android.synthetic.main.activity_spare_part_products.*
 import kotlinx.android.synthetic.main.pending_fragment.*
 
@@ -18,6 +19,8 @@ class PendingFragment : Fragment() {
     companion object {
         fun newInstance() = PendingFragment()
     }
+    private val fragment:Fragment =
+        OrderDetailsFragment.newInstance()
 
     private lateinit var viewModel: PendingViewModel
     private lateinit var ordersAdapter: OrdersAdapter
@@ -36,7 +39,16 @@ class PendingFragment : Fragment() {
 
         viewModel.getListOrdersLiveData().observe(this, Observer {
             if (it!=null){
-                ordersAdapter=OrdersAdapter(it,{true})
+                ordersAdapter=OrdersAdapter(it){
+                    val bundle = Bundle()
+                    bundle.putParcelable("selectedOrder", it)
+                    fragment.arguments=bundle
+                    val fragmentTransaction = activity?.supportFragmentManager?.beginTransaction()
+                    fragmentTransaction?.replace(R.id.fragmentPlaceholder, fragment)
+                    fragmentTransaction?.addToBackStack(null)
+                    fragmentTransaction?.commit()
+                    true
+                }
                 pendingOrdersRecyclerView.adapter=ordersAdapter
             }
 

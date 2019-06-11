@@ -12,10 +12,8 @@ class CartAdapter(private val cartItems: List<ParseObject>,
                   private val clickListener:(ParseObject)->Boolean): RecyclerView.Adapter<CartAdapter.CartHolderView>(){
     open class CartHolderView(itemView: View):RecyclerView.ViewHolder(itemView){
         fun bind(cartItem: ParseObject, clickListener: (ParseObject) -> Boolean){
-            itemView.setOnClickListener {
                 clickListener(cartItem)
             }
-        }
     }
     override fun onBindViewHolder(holder: CartHolderView, position: Int) {
         val cartItem = cartItems[position]

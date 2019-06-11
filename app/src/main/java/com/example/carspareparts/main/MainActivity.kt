@@ -30,7 +30,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     lateinit var mainViewModel: MainViewModel
     lateinit var homeFragment: HomeFragment
     lateinit var pendingFragment: PendingFragment
-    lateinit var orderFragment: OrderHistoryFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
 

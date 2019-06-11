@@ -18,6 +18,7 @@ class PendingViewModel : ViewModel() {
         userQuery.getFirstInBackground { customer, e ->
             if (e==null){
                 orderQuery.whereEqualTo("customer_id",customer)
+                orderQuery.whereEqualTo("delivered",false)
                 orderQuery.findInBackground { orders, e ->
                     if (e==null)
                         ordersLiveData.postValue(orders)

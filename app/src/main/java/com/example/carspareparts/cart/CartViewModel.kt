@@ -53,6 +53,7 @@ class CartViewModel : ViewModel() {
                 order.put("total_price", total)
                 order.put("order_date", Date().time)
                 order.put("customer_id", `object`)
+                order.put("delivered", false)
                 order.saveInBackground {
                     if (it != null)
                         exception.postValue(it)

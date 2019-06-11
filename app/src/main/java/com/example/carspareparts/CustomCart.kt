@@ -6,11 +6,6 @@ import android.graphics.drawable.Drawable
 import android.text.TextPaint
 import android.util.AttributeSet
 import android.widget.ImageView
-import androidx.core.view.ViewCompat.getClipBounds
-import android.R.attr.bottom
-import android.R.attr.right
-import android.R.attr.top
-import android.R.attr.left
 import com.parse.ParseObject
 import com.parse.ParseQuery
 
