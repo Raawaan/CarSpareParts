@@ -28,8 +28,8 @@ class SparePartProductAdapter(private val sparePartDetails: List<SparePartDetail
         }
         holder.itemView.productName.text=sparePartItemDetails.name
         holder.itemView.productPrice.text=sparePartItemDetails.price.toString()
-        holder.itemView.productSupplier.text=sparePartItemDetails.supplierName
         Picasso.get().load(sparePartItemDetails.image).into(holder.itemView.productImageView)
+        Picasso.get().load(sparePartItemDetails.supplierLogo).into(holder.itemView.supplier_image)
 
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SparePartProductHolderView {

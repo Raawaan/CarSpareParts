@@ -36,10 +36,11 @@
             android:text="order info"
             android:background="@drawable/button"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:layout_height="27dp"
+            android:layout_height="30dp"
+            android:textStyle="bold"
             android:textAllCaps="false"
             android:textColor="@color/cardview_light_background"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.951" app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_0constraintHorizontal_bias="0.951" app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent" android:id="@+id/btnDetails"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
