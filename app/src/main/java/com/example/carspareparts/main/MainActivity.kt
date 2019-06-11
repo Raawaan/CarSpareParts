@@ -92,8 +92,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
         when (item.itemId) {
-            R.id.home -> {
-                replaceFragments(homeFragment)
+            R.id.nav_home -> {
+                if(pendingFragment!=null){
+                    replaceFragments(homeFragment)
+                }
             }
             R.id.nav_pending_orders -> {
                 if(pendingFragment!=null){
