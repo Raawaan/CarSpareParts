@@ -1,4 +1,4 @@
-package com.example.carspareparts.OrderHistoryorder
+package com.example.carspareparts.orderhistory
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

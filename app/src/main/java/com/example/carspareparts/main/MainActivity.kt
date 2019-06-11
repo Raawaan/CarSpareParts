@@ -12,6 +12,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import com.example.carspareparts.OrderHistory.OrderHistoryFragment
 import com.example.carspareparts.home.HomeFragment
 import com.example.carspareparts.login.LoginActivity
 import com.parse.ParseUser
@@ -28,10 +29,10 @@ import com.parse.ParseException
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-
     lateinit var mainViewModel: MainViewModel
     lateinit var homeFragment: HomeFragment
     lateinit var pendingFragment: PendingFragment
+    lateinit var orderFragment: OrderHistoryFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -44,6 +45,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toolbar?.title = "Available Categories"
         setSupportActionBar(toolbar)
         pendingFragment=PendingFragment.newInstance()
+        orderFragment = OrderHistoryFragment.newInstance()
         setUserNameAndEmailToNavDrawer()
         attachHomeFragment()
 
@@ -93,7 +95,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // Handle navigation view item clicks here.
         when (item.itemId) {
             R.id.nav_home -> {
-                if(pendingFragment!=null){
+                if(homeFragment!=null){
                     replaceFragments(homeFragment)
                 }
             }
@@ -105,7 +107,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
             }
             R.id.nav_history -> {
-
+                if(orderFragment!=null){
+                    replaceFragments(orderFragment)
+                }
             }
             R.id.nav_about -> {
 

@@ -1,4 +1,4 @@
-package com.example.carspareparts.OrderHistoryorder
+package com.example.carspareparts.orderhistory
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.carspareparts.OrderHistoryorder.OrderHistoryViewModel
 
 import com.example.carspareparts.R
 import com.example.carspareparts.pendingorder.OrderHistoryAdapter

@@ -13,18 +13,13 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".sparepartdetails.SparePartDetailsFragment"
-        android:screenOrientation="portrait">
-        </activity>
-        <activity android:name=".sparepartproducts.SparePartProductsFragment"
-                  android:screenOrientation="portrait">
-        </activity>
         <activity
                 android:name=".main.MainActivity"
                 android:label="@string/title_activity_home"
                 android:screenOrientation="portrait"
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
+
         <activity android:name=".resetpassword.ResetPasswordActivity"
                   android:screenOrientation="portrait">
         </activity>
