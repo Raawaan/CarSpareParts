@@ -58,7 +58,7 @@ class CartViewModel : ViewModel() {
                         exception.postValue(it)
                     else{
                         ParseObject.unpinAllInBackground()
-
+                        exception.postValue(null)
                     }
                 }
 

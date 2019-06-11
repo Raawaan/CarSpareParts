@@ -20,6 +20,7 @@ import kotlinx.android.synthetic.main.app_bar_home.*
 
 import com.example.carspareparts.R
 import com.example.carspareparts.cart.CartActivity
+import com.example.carspareparts.pendingorder.PendingFragment
 import com.parse.ParseObject
 import com.parse.DeleteCallback
 import com.parse.ParseException
@@ -30,6 +31,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     lateinit var mainViewModel: MainViewModel
     lateinit var homeFragment: HomeFragment
+    lateinit var pendingFragment: PendingFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -41,7 +43,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         mainViewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         toolbar?.title = "Available Categories"
         setSupportActionBar(toolbar)
-
+        pendingFragment=PendingFragment.newInstance()
         setUserNameAndEmailToNavDrawer()
         attachHomeFragment()
 
@@ -94,6 +96,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 replaceFragments(homeFragment)
             }
             R.id.nav_pending_orders -> {
+                if(pendingFragment!=null){
+                    replaceFragments(pendingFragment)
+                }
+
 
             }
             R.id.nav_history -> {
@@ -123,6 +129,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private fun replaceFragments(fragment: Fragment) {
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.fragmentPlaceholder, fragment).commit()
+    }
+    override fun onResume() {
+        super.onResume()
+        cartView?.getAllInCart()
     }
 
 }

@@ -52,5 +52,10 @@ lateinit var sparePartDetailsViewModel: SparePartDetailsViewModel
                 Toast.makeText(context,it.message,Toast.LENGTH_LONG).show()
 
         })
+        sparePartDetailsViewModel.getStringException().observe(this, Observer {
+            Toast.makeText(context,it,Toast.LENGTH_LONG).show()
+
+        })
     }
+
 }

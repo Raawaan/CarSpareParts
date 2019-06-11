@@ -45,7 +45,10 @@ class CartActivity : AppCompatActivity() {
             }
         })
         cartViewModel.getRequestException().observe(this, Observer {
-            Toast.makeText(this,it.message,Toast.LENGTH_SHORT).show()
+            if (it !=null)
+                Toast.makeText(this,it.message,Toast.LENGTH_SHORT).show()
+            else
+                finish()
         })
     }
 
