@@ -16,17 +16,22 @@
             app:popupTheme="@style/AppTheme.PopupOverlay"
             tools:layout_editor_absoluteX="0dp" app:layout_constraintTop_toTopOf="parent"/>
     <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_width="377dp"
+            android:layout_height="537dp"
             android:id="@+id/cartDetails"
             app:layout_constraintBottom_toTopOf="@+id/orderBtn"
-            app:layout_constraintTop_toBottomOf="@+id/cartToolbar" tools:layout_editor_absoluteX="-16dp"
-            app:layout_constraintVertical_bias="0.0"/>
+            app:layout_constraintTop_toBottomOf="@+id/cartToolbar"
+            app:layout_constraintVertical_bias="0.15" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.529"/>
     <Button
             android:id="@+id/orderBtn"
             android:text="Order"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:layout_editor_absoluteX="-70dp"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            android:background="@drawable/button"
+            android:layout_width="300dp"
+            android:layout_height="42dp"
+            android:textColor="@color/cardview_light_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="16dp" app:layout_constraintHorizontal_bias="0.495"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

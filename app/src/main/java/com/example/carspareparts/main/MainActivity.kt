@@ -12,7 +12,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
-import com.example.carspareparts.OrderHistory.OrderHistoryFragment
 import com.example.carspareparts.home.HomeFragment
 import com.example.carspareparts.login.LoginActivity
 import com.parse.ParseUser
@@ -21,10 +20,9 @@ import kotlinx.android.synthetic.main.app_bar_home.*
 
 import com.example.carspareparts.R
 import com.example.carspareparts.cart.CartActivity
+import com.example.carspareparts.orderhistory.OrderHistoryFragment
 import com.example.carspareparts.pendingorder.PendingFragment
 import com.parse.ParseObject
-import com.parse.DeleteCallback
-import com.parse.ParseException
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {

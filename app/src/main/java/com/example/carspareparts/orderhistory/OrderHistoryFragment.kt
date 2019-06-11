@@ -8,10 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.carspareparts.OrderHistoryorder.OrderHistoryViewModel
+
 
 import com.example.carspareparts.R
-import com.example.carspareparts.pendingorder.OrderHistoryAdapter
+
 import kotlinx.android.synthetic.main.order_history_fragment.*
 
 class OrderHistoryFragment : Fragment() {
