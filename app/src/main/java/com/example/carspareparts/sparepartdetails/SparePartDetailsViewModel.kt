@@ -29,6 +29,7 @@ class SparePartDetailsViewModel : ViewModel() {
             if (objects.size == 0) {
                 cartItem.pinInBackground {
                     pinException.postValue(it)
+                    stringException.postValue("added to cart")
                 }
 
             } else{

@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.example.carspareparts.R
@@ -32,7 +33,7 @@ class OrderDetailsFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(OrderDetailsViewModel::class.java)
         viewModel.getRelationsProductInfo(arguments?.getParcelable<ParseObject>("selectedOrder"))
-        ordersDetails.layoutManager= LinearLayoutManager(context)
+        ordersDetails.layoutManager= GridLayoutManager(context,2)
         viewModel.getSparePartDetails().observe(this, Observer {
             if(!it.isNullOrEmpty()){
             orderDetailsAdapter=OrderDetailsAdapter(it)

@@ -19,8 +19,9 @@ class PendingFragment : Fragment() {
     companion object {
         fun newInstance() = PendingFragment()
     }
-    private val fragment:Fragment =
+    private val fragment:Fragment by lazy {
         OrderDetailsFragment.newInstance()
+    }
 
     private lateinit var viewModel: PendingViewModel
     private lateinit var ordersAdapter: OrdersAdapter
@@ -54,5 +55,4 @@ class PendingFragment : Fragment() {
 
         })
     }
-
 }

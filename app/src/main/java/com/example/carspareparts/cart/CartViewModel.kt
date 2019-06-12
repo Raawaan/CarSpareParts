@@ -65,7 +65,6 @@ class CartViewModel : ViewModel() {
 
             }
         }
-
     }
 
     fun getRequestException(): MutableLiveData<ParseException> {

@@ -1,9 +1,7 @@
 package com.example.carspareparts.sparepartproducts
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -45,6 +43,7 @@ class SparePartProductsFragment : Fragment() {
         listOfSpareDetailsRecyclerView.layoutManager = LinearLayoutManager(context)
         sparePartProductViewModel.getProductsByType(objectClickedId)
         sparePartProductViewModel.getSparePartDetails().observe(this, Observer {
+            progressBar.visibility=View.GONE
             sparePartProductAdapter= SparePartProductAdapter(it) {
                 val bundle = Bundle()
                 bundle.putParcelable("sparePartDetails", it)

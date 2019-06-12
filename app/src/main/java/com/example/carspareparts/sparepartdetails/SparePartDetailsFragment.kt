@@ -36,17 +36,17 @@ lateinit var sparePartDetailsViewModel: SparePartDetailsViewModel
         descriptionTextView.text = sparePartDetails?.description
 
         supplierTextView.text = sparePartDetails?.supplierName
-
+        detailsPrice.text=sparePartDetails?.price.toString().plus("LE")
         Picasso.get().load(sparePartDetails?.image).into(productImageView)
         sparePartDetailsViewModel= ViewModelProviders.of(this).get(SparePartDetailsViewModel::class.java)
         addToCartBtn.setOnClickListener {
+            addToCartBtn.isClickable=false
             sparePartDetailsViewModel.addItemToCart(sparePartDetails)
 
         }
         sparePartDetailsViewModel.requestResult().observe(this, Observer {
             if(it==null){
                 activity?.cartView?.getAllInCart()
-                Toast.makeText(context,"Added to Cart",Toast.LENGTH_LONG).show()
             }
             else
                 Toast.makeText(context,it.message,Toast.LENGTH_LONG).show()

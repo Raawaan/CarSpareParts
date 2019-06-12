@@ -7,6 +7,7 @@
         android:orientation="vertical"
         android:layout_height="match_parent"
         tools:context=".home.HomeFragment">
+
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/listOfSparePartTypeRecyclerView"
             android:layout_width="match_parent"

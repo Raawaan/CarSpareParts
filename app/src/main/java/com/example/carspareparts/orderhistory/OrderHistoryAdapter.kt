@@ -16,15 +16,12 @@ class OrderHistoryAdapter(private val OrderHistory: List<ParseObject>,
                     private val clickListener:(ParseObject)->Boolean): RecyclerView.Adapter<OrderHistoryAdapter.OrderHistoryHolderView>(){
     open class OrderHistoryHolderView(itemView: View): RecyclerView.ViewHolder(itemView){
         fun bind(OrderHistory: ParseObject, clickListener: (ParseObject) -> Boolean){
-            itemView.setOnClickListener {
                 clickListener(OrderHistory)
-            }
         }
     }
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: OrderHistoryHolderView, position: Int) {
         val order = OrderHistory[position]
-        holder.itemView.setOnClickListener {
+        holder.itemView.btnDetails.setOnClickListener {
             holder.bind(order,clickListener)
         }
         var frm = SimpleDateFormat ("dd-MMMM-yyyy")

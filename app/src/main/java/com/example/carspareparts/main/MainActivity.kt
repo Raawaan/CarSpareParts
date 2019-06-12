@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     lateinit var mainViewModel: MainViewModel
     lateinit var homeFragment: HomeFragment
     lateinit var pendingFragment: PendingFragment
-
+    lateinit var orderFragment:OrderHistoryFragment
     override fun onCreate(savedInstanceState: Bundle?) {
 
 
@@ -39,7 +39,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setContentView(R.layout.activity_main)
         cartView?.getAllInCart()
         mainViewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
-        toolbar?.title = "Available Categories"
         setSupportActionBar(toolbar)
         pendingFragment=PendingFragment.newInstance()
         orderFragment = OrderHistoryFragment.newInstance()
@@ -135,6 +134,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
     override fun onResume() {
         super.onResume()
+        toolbar?.title = "Available Categories"
         cartView?.getAllInCart()
     }
 

@@ -15,8 +15,9 @@ class OrderDetailsAdapter(private val products: List<SparePartDetails>): Recycle
         val product = products[position]
         holder.itemView.productName.text=product.name
         holder.itemView.productPrice.text=product.price.toString()
-        holder.itemView.productSupplier.text=product.supplierName
+//        holder.itemView.productSupplier.text=product.supplierName
         Picasso.get().load(product.image).into(holder.itemView.productImageView)
+        Picasso.get().load(product.supplierLogo).into(holder.itemView.supplier_image)
 
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SparePartProductHolderView {

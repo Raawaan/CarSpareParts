@@ -1,6 +1,7 @@
 package com.example.carspareparts.cart
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -30,7 +31,11 @@ class CartActivity : AppCompatActivity() {
         cartViewModel.getCartLiveData().observe(this, Observer { list  ->
             if(list !is ParseException){
                 if(!list.isNullOrEmpty()){
+                    orderBtn.isClickable=true
+                    cartNoItems.visibility=View.GONE
+                    cartDetails.visibility=View.VISIBLE
                     orderBtn.setOnClickListener {
+                        orderBtn.isClickable=false
                         cartViewModel.makeOrder(list)
                     }
                  }

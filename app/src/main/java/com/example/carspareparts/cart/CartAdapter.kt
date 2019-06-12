@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.carspareparts.R
 import com.parse.ParseObject
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.cart_content.view.*
 import kotlinx.android.synthetic.main.spare_part_details_content.view.*
 
@@ -17,12 +18,14 @@ class CartAdapter(private val cartItems: List<ParseObject>,
     }
     override fun onBindViewHolder(holder: CartHolderView, position: Int) {
         val cartItem = cartItems[position]
+
         holder.itemView.setOnClickListener {
             holder.bind(cartItem,clickListener)
         }
-        holder.itemView.cartProductName.text=cartItem.getString("product_name")
-        holder.itemView.cartPrice.text=cartItem.getInt("total_price").toString()
-        holder.itemView.cartSupplierName.text= cartItem.getString("supplier_name")
+        Picasso.get().load(cartItem.getParseObject("supplier_id")?.getString("product_image")).into(holder.itemView.cartProductImage)
+        holder.itemView.cartProductName.text= holder.itemView.cartProductName.text.toString().plus( cartItem.getString("product_name"))
+        holder.itemView.cartPrice.text=cartItem.getInt("total_price").toString().plus("LE")
+        holder.itemView.cartSupplierName.text= holder.itemView.cartSupplierName.text.toString().plus(cartItem.getString("supplier_name"))
 
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartHolderView {

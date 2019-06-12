@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 
 
 import com.example.carspareparts.R
+import com.example.carspareparts.orderdetails.OrderDetailsFragment
 
 import kotlinx.android.synthetic.main.order_history_fragment.*
 
@@ -19,6 +20,10 @@ class OrderHistoryFragment : Fragment() {
     companion object {
         fun newInstance() = OrderHistoryFragment()
     }
+    private val fragment:Fragment by lazy {
+        OrderDetailsFragment.newInstance()
+    }
+
 
     private lateinit var viewModel: OrderHistoryViewModel
     private lateinit var orderHistoryAdapter: OrderHistoryAdapter
@@ -37,7 +42,15 @@ class OrderHistoryFragment : Fragment() {
 
         viewModel.getListOrdersLiveData().observe(this, Observer {
             if (it!=null){
-                orderHistoryAdapter=OrderHistoryAdapter(it,{true})
+                orderHistoryAdapter=OrderHistoryAdapter(it){
+                    val bundle = Bundle()
+                    bundle.putParcelable("selectedOrder", it)
+                    fragment.arguments=bundle
+                    val fragmentTransaction = activity?.supportFragmentManager?.beginTransaction()
+                    fragmentTransaction?.replace(R.id.fragmentPlaceholder, fragment)
+                    fragmentTransaction?.addToBackStack(null)
+                    fragmentTransaction?.commit()
+                    true}
                 orderHistoryRecyclerView.adapter=orderHistoryAdapter
             }
 
