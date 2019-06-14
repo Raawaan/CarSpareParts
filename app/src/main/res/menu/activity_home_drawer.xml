@@ -10,13 +10,9 @@
                 android:icon="@drawable/ic_home_black_24dp"
                 android:title="Home"/>
         <item
-                android:id="@+id/nav_pending_orders"
+                android:id="@+id/nav_orders"
                 android:icon="@drawable/ic_pending_black_24dp"
-                android:title="Pending Orders"/>
-        <item
-                android:id="@+id/nav_history"
-                android:icon="@drawable/ic_history_black_24dp"
-                android:title="History"/>
+                android:title="Orders"/>
         <item
                 android:id="@+id/nav_about"
                 android:icon="@drawable/ic_about"
@@ -26,6 +22,4 @@
                 android:icon="@drawable/ic_logout_black_24dp"
                 android:title="Sign Out"/>
     </group>
-
-
 </menu>

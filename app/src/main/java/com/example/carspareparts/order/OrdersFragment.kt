@@ -1,4 +1,4 @@
-package com.example.carspareparts.pendingorder
+package com.example.carspareparts.order
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -11,19 +11,18 @@ import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.example.carspareparts.R
 import com.example.carspareparts.orderdetails.OrderDetailsFragment
-import kotlinx.android.synthetic.main.activity_spare_part_products.*
 import kotlinx.android.synthetic.main.pending_fragment.*
 
-class PendingFragment : Fragment() {
+class OrdersFragment : Fragment() {
 
     companion object {
-        fun newInstance() = PendingFragment()
+        fun newInstance() = OrdersFragment()
     }
     private val fragment:Fragment by lazy {
         OrderDetailsFragment.newInstance()
     }
 
-    private lateinit var viewModel: PendingViewModel
+    private lateinit var viewModel: OrdersViewModel
     private lateinit var ordersAdapter: OrdersAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,7 +33,7 @@ class PendingFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(PendingViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(OrdersViewModel::class.java)
         viewModel.getPendingOrders()
         pendingOrdersRecyclerView.layoutManager = LinearLayoutManager(context)
 

@@ -1,5 +1,6 @@
 package com.example.carspareparts.orderdetails
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +16,15 @@ class OrderDetailsAdapter(private val products: List<SparePartDetails>): Recycle
         val product = products[position]
         holder.itemView.productName.text=product.name
         holder.itemView.productPrice.text=product.price.toString()
-//        holder.itemView.productSupplier.text=product.supplierName
+        if(product.delivered){
+        holder.itemView.status.text="Delivered"
+            holder.itemView.status.setTextColor(Color.GREEN)
+        }
+        else{
+            holder.itemView.status.text="Not Delivered"
+            holder.itemView.status.setTextColor(Color.RED)
+        }
+
         Picasso.get().load(product.image).into(holder.itemView.productImageView)
         Picasso.get().load(product.supplierLogo).into(holder.itemView.supplier_image)
 

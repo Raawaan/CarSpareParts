@@ -18,5 +18,6 @@ data class SparePartDetails(
     val description: String?,
     val supplierName: String?,
     val image: String?,
-    val supplierLogo: String?
+    val supplierLogo: String?,
+    val delivered:Boolean
 ) : Parcelable

@@ -32,8 +32,8 @@ class OrderDetailsFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(OrderDetailsViewModel::class.java)
-        viewModel.getRelationsProductInfo(arguments?.getParcelable<ParseObject>("selectedOrder"))
-        ordersDetails.layoutManager= GridLayoutManager(context,2)
+        viewModel.getRelationsProductInfo(arguments?.getParcelable("selectedOrder"))
+        ordersDetails.layoutManager= LinearLayoutManager(context)
         viewModel.getSparePartDetails().observe(this, Observer {
             if(!it.isNullOrEmpty()){
             orderDetailsAdapter=OrderDetailsAdapter(it)

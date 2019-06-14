@@ -1,4 +1,4 @@
-package com.example.carspareparts.pendingorder
+package com.example.carspareparts.order
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -6,7 +6,7 @@ import com.parse.ParseObject
 import com.parse.ParseQuery
 import com.parse.ParseUser
 
-class PendingViewModel : ViewModel() {
+class OrdersViewModel : ViewModel() {
    private val ordersLiveData = MutableLiveData<List<ParseObject>>()
     fun getPendingOrders() {
 
@@ -18,7 +18,6 @@ class PendingViewModel : ViewModel() {
         userQuery.getFirstInBackground { customer, e ->
             if (e==null){
                 orderQuery.whereEqualTo("customer_id",customer)
-                orderQuery.whereEqualTo("delivered",false)
                 orderQuery.findInBackground { orders, e ->
                     if (e==null)
                         ordersLiveData.postValue(orders)

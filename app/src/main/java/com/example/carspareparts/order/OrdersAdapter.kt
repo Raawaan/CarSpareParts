@@ -1,4 +1,4 @@
-package com.example.carspareparts.pendingorder
+package com.example.carspareparts.order
 
 import android.view.LayoutInflater
 import android.view.View

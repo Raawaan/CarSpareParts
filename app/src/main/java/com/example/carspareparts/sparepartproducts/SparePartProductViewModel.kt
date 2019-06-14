@@ -37,7 +37,8 @@ class SparePartProductViewModel : ViewModel() {
                             sparePartClass.getString("description"),
                             parseUser?.getString("username"),
                             sparePartClass.getString("product_image"),
-                            sparePartSupplierClass?.getString("supplier_logo")
+                            sparePartSupplierClass?.getString("supplier_logo"),
+                            false
                         )
                     )
                 }

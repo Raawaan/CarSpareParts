@@ -35,31 +35,49 @@ class CartViewModel : ViewModel() {
 
     fun makeOrder(list: List<ParseObject>?) {
         var total = 0
-
+        var error=false
         val userQuery = ParseQuery.getQuery<ParseObject>("customer")
         userQuery.whereEqualTo("user_id", ParseUser.getCurrentUser())
-        userQuery.getFirstInBackground { `object`, e ->
+        userQuery.getFirstInBackground { customer, e ->
             if (e == null) {
 
                 val order = ParseObject("order")
 
-                val relation =  order.getRelation<ParseObject>("products_chosen")
+//                val relation =  order.getRelation<ParseObject>("products_chosen")
                 list?.forEach {
                     total += it.getInt("total_price")
-                    val po = ParseObject.createWithoutData("supplier_spare_part",it.getString("supplier_spare_part_id"))
-                    relation.add(po)
-
+//                    val po = ParseObject.createWithoutData("supplier_spare_part",it.getString("supplier_spare_part_id"))
+//                    relation.add(po)
                 }
+
                 order.put("total_price", total)
-                order.put("order_date", Date().time)
-                order.put("customer_id", `object`)
-                order.put("delivered", false)
+                order.put("customer_id", customer)
                 order.saveInBackground {
-                    if (it != null)
+                    if (it != null){
                         exception.postValue(it)
+                    }
                     else{
+                        list?.forEach {
+                            val orderSupplierSparePart = ParseObject("order_supplier_spare_part")
+                            orderSupplierSparePart.put("order_id",order)
+                            orderSupplierSparePart.put("supplier_spare_part_id"
+                                ,ParseObject.createWithoutData("supplier_spare_part",it.getString("supplier_spare_part_id")!!)
+                            )
+                            orderSupplierSparePart.put("quantity",1)
+                            orderSupplierSparePart.put("is_accepted",false)
+                            orderSupplierSparePart.saveInBackground {
+                                if(it!=null){
+                                    error=true
+                                }
+                            }
+                        }
+                        if (error){
+                            exception.postValue(it)
+                        }
+                        else{
                         ParseObject.unpinAllInBackground()
                         exception.postValue(null)
+                        }
                     }
                 }
 

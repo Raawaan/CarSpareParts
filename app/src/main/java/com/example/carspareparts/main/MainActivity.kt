@@ -9,10 +9,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentManager.POP_BACK_STACK_INCLUSIVE
 import androidx.lifecycle.ViewModelProviders
+import com.example.carspareparts.AboutFragment
 import com.example.carspareparts.home.HomeFragment
 import com.example.carspareparts.login.LoginActivity
 import com.parse.ParseUser
@@ -21,17 +21,22 @@ import kotlinx.android.synthetic.main.app_bar_home.*
 
 import com.example.carspareparts.R
 import com.example.carspareparts.cart.CartActivity
-import com.example.carspareparts.orderhistory.OrderHistoryFragment
-import com.example.carspareparts.pendingorder.PendingFragment
+import com.example.carspareparts.order.OrdersFragment
 import com.parse.ParseObject
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     lateinit var mainViewModel: MainViewModel
-    lateinit var homeFragment: HomeFragment
-    lateinit var pendingFragment: PendingFragment
-    lateinit var orderFragment:OrderHistoryFragment
+    private val homeFragment: HomeFragment by lazy {
+        HomeFragment.newInstance()
+    }
+    private val ordersFragment: OrdersFragment by lazy {
+        OrdersFragment.newInstance()
+    }
+    private val aboutFragment:AboutFragment by lazy {
+        AboutFragment.newInstance()
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
 
 
@@ -41,8 +46,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         cartView?.getAllInCart()
         mainViewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         setSupportActionBar(toolbar)
-        pendingFragment=PendingFragment.newInstance()
-        orderFragment = OrderHistoryFragment.newInstance()
         setUserNameAndEmailToNavDrawer()
         attachHomeFragment()
 
@@ -57,7 +60,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         nav_view.setNavigationItemSelectedListener(this)
 
         cartView.setOnClickListener {
-            //Toast.makeText(this, "click", Toast.LENGTH_LONG).show()
             Intent(this, CartActivity::class.java).also {
                 startActivity(it)
             }
@@ -66,7 +68,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
     private fun attachHomeFragment() {
-        homeFragment = HomeFragment.newInstance()
         supportFragmentManager.
             beginTransaction()
             .replace(R.id.fragmentPlaceholder, homeFragment, "a").commit()
@@ -94,38 +95,23 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // Handle navigation view item clicks here.
         when (item.itemId) {
             R.id.nav_home -> {
-                if(homeFragment!=null){
-                    replaceFragments(homeFragment)
-                }
+                replaceFragments(homeFragment)
             }
-            R.id.nav_pending_orders -> {
-                if(pendingFragment!=null){
-                    replaceFragments(pendingFragment)
-                }
-
-
-            }
-            R.id.nav_history -> {
-                if(orderFragment!=null){
-                    replaceFragments(orderFragment)
-                }
+            R.id.nav_orders -> {
+                replaceFragments(ordersFragment)
             }
             R.id.nav_about -> {
-
+                replaceFragments(aboutFragment)
             }
             R.id.nav_sign_out -> {
                 mainViewModel.userSignOut()
-
                 Intent(this, LoginActivity::class.java).apply {
                     startActivity(this)
                 }
                 ParseObject.unpinAllInBackground()
                 finish()
             }
-
-
         }
-
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
     }
@@ -133,7 +119,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private fun replaceFragments(fragment: Fragment) {
         val fragmentTransaction = supportFragmentManager.beginTransaction()
-        fragmentTransaction.addToBackStack(null)
+        supportFragmentManager.popBackStack("home",POP_BACK_STACK_INCLUSIVE)
         fragmentTransaction.replace(R.id.fragmentPlaceholder, fragment).commit()
     }
     override fun onResume() {
