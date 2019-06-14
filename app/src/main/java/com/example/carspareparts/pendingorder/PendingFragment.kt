@@ -45,7 +45,7 @@ class PendingFragment : Fragment() {
                     bundle.putParcelable("selectedOrder", it)
                     fragment.arguments=bundle
                     val fragmentTransaction = activity?.supportFragmentManager?.beginTransaction()
-                    fragmentTransaction?.replace(R.id.fragmentPlaceholder, fragment)
+                    fragmentTransaction?.add(R.id.fragmentPlaceholder, fragment)
                     fragmentTransaction?.addToBackStack(null)
                     fragmentTransaction?.commit()
                     true

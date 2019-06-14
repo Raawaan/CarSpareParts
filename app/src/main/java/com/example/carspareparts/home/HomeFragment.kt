@@ -64,8 +64,8 @@ class HomeFragment : Fragment() {
                 bundle.putString("typeName", it.second)
                 fragment.arguments=bundle
                 val fragmentTransaction = activity?.supportFragmentManager?.beginTransaction()
-                fragmentTransaction?.replace(R.id.fragmentPlaceholder, fragment)
-                fragmentTransaction?.addToBackStack(null)
+                fragmentTransaction?.add(R.id.fragmentPlaceholder, fragment)
+                fragmentTransaction?.addToBackStack("home")
                 fragmentTransaction?.commit()
                 true
             }

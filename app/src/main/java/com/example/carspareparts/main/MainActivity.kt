@@ -11,6 +11,7 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProviders
 import com.example.carspareparts.home.HomeFragment
 import com.example.carspareparts.login.LoginActivity
@@ -66,7 +67,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private fun attachHomeFragment() {
         homeFragment = HomeFragment.newInstance()
-        supportFragmentManager.beginTransaction().add(R.id.fragmentPlaceholder, homeFragment, "a").commit()
+        supportFragmentManager.
+            beginTransaction()
+            .replace(R.id.fragmentPlaceholder, homeFragment, "a").commit()
     }
 
     private fun setUserNameAndEmailToNavDrawer() {
@@ -130,6 +133,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private fun replaceFragments(fragment: Fragment) {
         val fragmentTransaction = supportFragmentManager.beginTransaction()
+        fragmentTransaction.addToBackStack(null)
         fragmentTransaction.replace(R.id.fragmentPlaceholder, fragment).commit()
     }
     override fun onResume() {
