@@ -45,7 +45,7 @@ class CartViewModel : ViewModel() {
 
 //                val relation =  order.getRelation<ParseObject>("products_chosen")
                 list?.forEach {
-                    total += it.getInt("total_price")
+                    total += it.getInt("total_price")*it.getInt("quantity")
 //                    val po = ParseObject.createWithoutData("supplier_spare_part",it.getString("supplier_spare_part_id"))
 //                    relation.add(po)
                 }
@@ -63,7 +63,7 @@ class CartViewModel : ViewModel() {
                             orderSupplierSparePart.put("supplier_spare_part_id"
                                 ,ParseObject.createWithoutData("supplier_spare_part",it.getString("supplier_spare_part_id")!!)
                             )
-                            orderSupplierSparePart.put("quantity",1)
+                            orderSupplierSparePart.put("quantity",it.getInt("quantity"))
                             orderSupplierSparePart.put("is_accepted",false)
                             orderSupplierSparePart.saveInBackground {
                                 if(it!=null){

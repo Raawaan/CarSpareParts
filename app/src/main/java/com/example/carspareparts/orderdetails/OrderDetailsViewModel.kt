@@ -39,7 +39,8 @@ class OrderDetailsViewModel : ViewModel() {
                             parseUser?.getString("username"),
                             sparePartClass?.getString("product_image"),
                             sparePartSupplierClass?.getString("supplier_logo"),
-                            it.getBoolean("is_accepted")
+                            it.getBoolean("is_accepted"),
+                            it.getInt("quantity")
                         )
                     )
             }

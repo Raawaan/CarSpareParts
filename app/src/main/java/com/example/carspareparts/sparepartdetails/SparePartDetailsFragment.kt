@@ -19,7 +19,6 @@ class SparePartDetailsFragment : Fragment() {
 lateinit var sparePartDetailsViewModel: SparePartDetailsViewModel
     companion object {
         fun newInstance() = SparePartDetailsFragment()
-
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -28,6 +27,8 @@ lateinit var sparePartDetailsViewModel: SparePartDetailsViewModel
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        var quantity=1
+        quantityTextView.text=quantity.toString()
         val sparePartDetails = arguments?.getParcelable<SparePartDetails>("sparePartDetails")
         sparePartDetails?.supplierName
         activity?.toolbar?.title="${sparePartDetails?.name} Details"
@@ -41,8 +42,23 @@ lateinit var sparePartDetailsViewModel: SparePartDetailsViewModel
         sparePartDetailsViewModel= ViewModelProviders.of(this).get(SparePartDetailsViewModel::class.java)
         addToCartBtn.setOnClickListener {
             addToCartBtn.isClickable=false
-            sparePartDetailsViewModel.addItemToCart(sparePartDetails)
+            sparePartDetailsViewModel.addItemToCart(sparePartDetails,quantity)
 
+        }
+        plusBtn.setOnClickListener {
+        if (quantity<4){
+            quantity++
+            quantityTextView.text=quantity.toString()
+            }
+            else
+            Toast.makeText(context,"quantity can't be more than 4 items",Toast.LENGTH_LONG).show()
+        }
+        minusBtn.setOnClickListener {
+            if(quantity>1){
+                quantity--
+                quantityTextView.text=quantity.toString()
+            }
+            Toast.makeText(context,"quantity can't be less than one item",Toast.LENGTH_LONG).show()
         }
         sparePartDetailsViewModel.requestResult().observe(this, Observer {
             if(it==null){

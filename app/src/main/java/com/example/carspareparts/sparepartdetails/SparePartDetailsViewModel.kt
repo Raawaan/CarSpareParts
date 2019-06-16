@@ -12,12 +12,13 @@ import java.util.*
 class SparePartDetailsViewModel : ViewModel() {
     private val pinException = MutableLiveData<ParseException>()
     private val stringException = MutableLiveData<String>()
-    fun addItemToCart(sparePart: SparePartDetails?) {
+    fun addItemToCart(sparePart: SparePartDetails?,quantity:Int) {
         val cartItem = ParseObject("pinned_order")
         cartItem.put("product_name", sparePart?.name!!)
         cartItem.put("supplier_name", sparePart.supplierName!!)
         cartItem.put("total_price", sparePart.price!!)
         cartItem.put("supplier_id", sparePart.supplierId!!)
+        cartItem.put("quantity", quantity)
         cartItem.put("spare_part_id", sparePart.sparePartId!!)
         cartItem.put("supplier_spare_part_id",sparePart.objectId!!)
 

@@ -24,7 +24,7 @@ class CartAdapter(private val cartItems: List<ParseObject>,
         }
         Picasso.get().load(cartItem.getParseObject("supplier_id")?.getString("product_image")).into(holder.itemView.cartProductImage)
         holder.itemView.cartProductName.text= holder.itemView.cartProductName.text.toString().plus( cartItem.getString("product_name"))
-        holder.itemView.cartPrice.text=cartItem.getInt("total_price").toString().plus("LE")
+        holder.itemView.cartPrice.text="total price " +cartItem.getInt("total_price").times(cartItem.getInt("quantity")).toString().plus("LE")
         holder.itemView.cartSupplierName.text= holder.itemView.cartSupplierName.text.toString().plus(cartItem.getString("supplier_name"))
 
     }

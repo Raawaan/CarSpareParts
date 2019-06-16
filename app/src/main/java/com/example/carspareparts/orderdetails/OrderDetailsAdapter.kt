@@ -24,6 +24,7 @@ class OrderDetailsAdapter(private val products: List<SparePartDetails>): Recycle
             holder.itemView.status.text="Not Delivered"
             holder.itemView.status.setTextColor(Color.RED)
         }
+        holder.itemView.quantityChosen.text="Quantity: "+product.quantity.toString()
 
         Picasso.get().load(product.image).into(holder.itemView.productImageView)
         Picasso.get().load(product.supplierLogo).into(holder.itemView.supplier_image)

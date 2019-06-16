@@ -51,13 +51,13 @@ class HomeFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-//        setHasOptionsMenu(true)
         homeFragmentViewModel= ViewModelProviders.of(this).get(HomeFragmentViewModel::class.java)
 
         homeFragmentViewModel.getSparePartTypeList()
-        listOfSparePartTypeRecyclerView.layoutManager = LinearLayoutManager(activity)
+        listOfSparePartTypRecyclerView.layoutManager = LinearLayoutManager(activity)
         homeFragmentViewModel.getSparePartTypeLiveData().observe(this, Observer {
             if(it !is ParseException){
+                homeProgressBar.visibility=View.GONE
             sparePartTypeAdapter = SparePartTypeAdapter(it) {
                 val bundle = Bundle()
                 bundle.putString("objectId", it.first)
@@ -69,7 +69,7 @@ class HomeFragment : Fragment() {
                 fragmentTransaction?.commit()
                 true
             }
-                listOfSparePartTypeRecyclerView.adapter = sparePartTypeAdapter
+                listOfSparePartTypRecyclerView.adapter = sparePartTypeAdapter
             }
 //            else{
 //                Toast.makeText(context,it.message,Toast.LENGTH_LONG).show()
