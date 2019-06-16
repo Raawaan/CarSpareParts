@@ -72,7 +72,7 @@ class HomeFragment : Fragment() {
                 listOfSparePartTypRecyclerView.adapter = sparePartTypeAdapter
             }
 //            else{
-//                Toast.makeText(context,it.message,Toast.LENGTH_LONG).show()
+//                Toast.makeText(context,it.message,Toast.LENGTH_SHORT).show()
 //            }
         })
 

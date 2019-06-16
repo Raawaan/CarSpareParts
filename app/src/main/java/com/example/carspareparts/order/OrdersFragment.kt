@@ -38,7 +38,12 @@ class OrdersFragment : Fragment() {
         pendingOrdersRecyclerView.layoutManager = LinearLayoutManager(context)
 
         viewModel.getListOrdersLiveData().observe(this, Observer {
-            if (it!=null){
+            if (it?.size==0) {
+                noOrders.visibility=View.VISIBLE
+                ordersListProgressBar.visibility=View.GONE
+            }
+            else if (it!=null) {
+                ordersListProgressBar.visibility=View.GONE
                 ordersAdapter=OrdersAdapter(it){
                     val bundle = Bundle()
                     bundle.putParcelable("selectedOrder", it)

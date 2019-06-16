@@ -36,6 +36,7 @@ class OrderDetailsFragment : Fragment() {
         ordersDetails.layoutManager= LinearLayoutManager(context)
         viewModel.getSparePartDetails().observe(this, Observer {
             if(!it.isNullOrEmpty()){
+                ordersDetailsProgressBar.visibility=View.GONE
             orderDetailsAdapter=OrderDetailsAdapter(it)
             ordersDetails.adapter = orderDetailsAdapter
             }

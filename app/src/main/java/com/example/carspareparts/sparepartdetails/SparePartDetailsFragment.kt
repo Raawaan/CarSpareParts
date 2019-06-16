@@ -41,35 +41,33 @@ lateinit var sparePartDetailsViewModel: SparePartDetailsViewModel
         Picasso.get().load(sparePartDetails?.image).into(productImageView)
         sparePartDetailsViewModel= ViewModelProviders.of(this).get(SparePartDetailsViewModel::class.java)
         addToCartBtn.setOnClickListener {
-            addToCartBtn.isClickable=false
             sparePartDetailsViewModel.addItemToCart(sparePartDetails,quantity)
-
         }
-        plusBtn.setOnClickListener {
+              plusBtn.setOnClickListener {
         if (quantity<4){
             quantity++
             quantityTextView.text=quantity.toString()
             }
             else
-            Toast.makeText(context,"quantity can't be more than 4 items",Toast.LENGTH_LONG).show()
+            Toast.makeText(context,"quantity can't be more than 4 items",Toast.LENGTH_SHORT).show()
         }
         minusBtn.setOnClickListener {
             if(quantity>1){
                 quantity--
                 quantityTextView.text=quantity.toString()
             }
-            Toast.makeText(context,"quantity can't be less than one item",Toast.LENGTH_LONG).show()
+            Toast.makeText(context,"quantity can't be less than one item",Toast.LENGTH_SHORT).show()
         }
         sparePartDetailsViewModel.requestResult().observe(this, Observer {
             if(it==null){
                 activity?.cartView?.getAllInCart()
             }
             else
-                Toast.makeText(context,it.message,Toast.LENGTH_LONG).show()
+                Toast.makeText(context,it.message,Toast.LENGTH_SHORT).show()
 
         })
         sparePartDetailsViewModel.getStringException().observe(this, Observer {
-            Toast.makeText(context,it,Toast.LENGTH_LONG).show()
+            Toast.makeText(context,it,Toast.LENGTH_SHORT).show()
 
         })
     }

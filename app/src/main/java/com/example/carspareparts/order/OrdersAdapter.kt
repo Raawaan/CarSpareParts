@@ -23,10 +23,11 @@ class OrdersAdapter(private val orders: List<ParseObject>,
             holder.bind(order,clickListener)
         }
         val frm = SimpleDateFormat ("dd-MMMM-yyyy")
-        val date = order.createdAt;
+        val date = order.createdAt
         holder.itemView.orderDate.text= frm.format(date).toString()
         holder.itemView.orderNumber.text=position.plus(1).toString()
         holder.itemView.orderTotal.text = order.get("total_price").toString()
+        holder.itemView.orderAddress.text = "Address"+ order.get("address").toString()
 
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OrdersHolderView {

@@ -63,6 +63,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             Intent(this, CartActivity::class.java).also {
                 startActivity(it)
             }
+            supportFragmentManager.popBackStack("home",POP_BACK_STACK_INCLUSIVE)
+
         }
     }
 
@@ -120,6 +122,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private fun replaceFragments(fragment: Fragment) {
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         supportFragmentManager.popBackStack("home",POP_BACK_STACK_INCLUSIVE)
+        fragmentTransaction.addToBackStack(null)
         fragmentTransaction.replace(R.id.fragmentPlaceholder, fragment).commit()
     }
     override fun onResume() {
