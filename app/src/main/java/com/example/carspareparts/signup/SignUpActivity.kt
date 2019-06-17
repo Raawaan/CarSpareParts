@@ -40,14 +40,14 @@ class SignUpActivity : AppCompatActivity() {
                     finish()
                     }
                 else
-                  Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
+                  Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
 
             })
         }
 
     private fun passwordMatcherValidation(): Boolean {
         if (passwordConfirmSignUpEditText.text.toString() != passwordSignUpEditText.text.toString()) {
-            Toast.makeText(this, "password doesn't match!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "password doesn't match!", Toast.LENGTH_LONG).show()
             return true
         }
         return false

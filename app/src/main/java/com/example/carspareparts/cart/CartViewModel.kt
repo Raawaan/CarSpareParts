@@ -18,7 +18,6 @@ class CartViewModel : ViewModel() {
 
     private val cartItemsList = MutableLiveData<List<ParseObject>>()
     private val exception = MutableLiveData<ParseException>()
-    private val notifyDataChanged= MutableLiveData<ParseObject>()
     fun getCartItems() {
         val cartQuery = ParseQuery.getQuery<ParseObject>("pinned_order")
         cartQuery.fromLocalDatastore()
@@ -34,7 +33,7 @@ class CartViewModel : ViewModel() {
         return cartItemsList
     }
 
-    fun makeOrder(list: List<ParseObject>?,address:String) {
+    fun makeOrder(list: List<ParseObject>?) {
         var total = 0
         var error=false
         val userQuery = ParseQuery.getQuery<ParseObject>("customer")
@@ -53,7 +52,6 @@ class CartViewModel : ViewModel() {
 
                 order.put("total_price", total)
                 order.put("customer_id", customer)
-                order.put("address", address)
                 order.saveInBackground {
                     if (it != null){
                         exception.postValue(it)
@@ -89,21 +87,5 @@ class CartViewModel : ViewModel() {
 
     fun getRequestException(): MutableLiveData<ParseException> {
         return exception
-    }
-
-    fun removeItemFromCart(cartItem: ParseObject) {
-        val cartQuery = ParseQuery.getQuery<ParseObject>("pinned_order")
-        cartQuery.fromLocalDatastore()
-        cartItem.unpinInBackground(cartItem.objectId){
-            if (it!=null){
-                exception.postValue(it)
-            }
-            else
-                notifyDataChanged.postValue(cartItem)
-
-        }
-    }
-    fun notifyAdapterToChange(): MutableLiveData<ParseObject> {
-        return notifyDataChanged
     }
 }

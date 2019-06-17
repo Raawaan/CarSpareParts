@@ -14,7 +14,7 @@ class OrdersViewModel : ViewModel() {
         userQuery.whereEqualTo("user_id", ParseUser.getCurrentUser())
 
         val orderQuery =ParseQuery.getQuery<ParseObject>("order")
-        orderQuery.orderByDescending("createdAt")
+
         userQuery.getFirstInBackground { customer, e ->
             if (e==null){
                 orderQuery.whereEqualTo("customer_id",customer)

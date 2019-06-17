@@ -11,11 +11,8 @@ import android.view.View
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager.POP_BACK_STACK_INCLUSIVE
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.carspareparts.AboutFragment
-import com.example.carspareparts.ConnectionLiveData
-import com.example.carspareparts.InternetConnectionTextView
 import com.example.carspareparts.home.HomeFragment
 import com.example.carspareparts.login.LoginActivity
 import com.parse.ParseUser
@@ -26,7 +23,6 @@ import com.example.carspareparts.R
 import com.example.carspareparts.cart.CartActivity
 import com.example.carspareparts.order.OrdersFragment
 import com.parse.ParseObject
-import kotlinx.android.synthetic.main.content_home.*
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -42,15 +38,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         AboutFragment.newInstance()
     }
     override fun onCreate(savedInstanceState: Bundle?) {
+
+
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_main)
-        ConnectionLiveData.observe(this, Observer {
-            if (it!=null&&it.isConnected){
-                internetConnectionCustomTextView.connected()
-            }
-            else
-                internetConnectionCustomTextView.noInternetConnection()
-        })
         cartView?.getAllInCart()
         mainViewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         setSupportActionBar(toolbar)
@@ -71,8 +63,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             Intent(this, CartActivity::class.java).also {
                 startActivity(it)
             }
-            supportFragmentManager.popBackStack("home",POP_BACK_STACK_INCLUSIVE)
-
         }
     }
 
@@ -130,7 +120,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private fun replaceFragments(fragment: Fragment) {
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         supportFragmentManager.popBackStack("home",POP_BACK_STACK_INCLUSIVE)
-        fragmentTransaction.addToBackStack(null)
         fragmentTransaction.replace(R.id.fragmentPlaceholder, fragment).commit()
     }
     override fun onResume() {

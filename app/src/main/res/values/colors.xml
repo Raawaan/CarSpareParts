@@ -3,6 +3,80 @@
     <color name="colorPrimary">#414144</color>
     <color name="colorAccent">#FFA64D</color>
     <color name="colorPrimaryDark">#484848</color>
-    <color name="online_green">#3CB371</color>
-    <color name="offline_red">#FF0000</color>
+
+
+    <color name="dark_orange">#df5604</color>
+    <color name="orange">@color/hikids_orange</color>
+    <color name="white">#ffffff</color>
+
+    <color name="background_light_grey">#ececec</color>
+
+    <color name="text_color">#5c5d5e</color>
+
+    <color name="darker_grey">#545557</color>
+    <color name="dark_grey">#737373</color>
+    <color name="light_grey">#a0a1a5</color>
+    <color name="top">@color/hikids_orange</color>
+    <!--<color name="top">#ff7f21</color>-->
+    <!--<color name="bottom">#e3711d</color>-->
+    <color name="bottom">@color/hikids_orange</color>
+
+    <color name="darker_background_grey">#e6e6e6</color>
+
+    <!--<color name="red">#ff5021</color>-->
+    <color name="red">@color/hikids_red</color>
+    <color name="badge_red">#b52828</color>
+
+    <color name="hikids_red">#d92b2b</color>
+    <color name="hikids_orange">#f1592a</color>
+    <color name="hikids_green">#3ab54a</color>
+    <color name="hikids_yellow">#f6ee31</color>
+    <color name="hikids_blue">#0e76bd</color>
+
+    <color name="status_bar_color">#d94f25</color>
+
+    <color name="text_field_border">#e3e3e3</color>
+
+    <color name="blue">@color/hikids_blue</color>
+    <!--<color name="blue">#4c67fd</color>-->
+
+    <color name="special_product_card_green">#3baa35</color>
+    <color name="special_product_card_light_green">#f3fedc</color>
+    <color name="special_product_card_pink">#fc6a9c</color>
+    <color name="special_product_card_light_pink">#ffe5ea</color>
+    <color name="special_product_card_blue">#1e71b8</color>
+    <color name="special_product_card_light_blue">#dbeffa</color>
+    <color name="special_product_card_orange">#e94e1c</color>
+    <color name="special_product_card_light_orange">#fffbe2</color>
+    <color name="special_product_card_purple">#4c1d89</color>
+    <color name="special_product_card_light_purple">#f3eafd</color>
+
+    <color name="facebook_color">#3b5997</color>
+    <color name="twitter_color">#4098fd</color>
+    <color name="instagram_color">#bb2a8c</color>
+
+    <color name="button_grey">#b4b4b4</color>
+
+
+    <array name="special_product_card_foreground">
+        <item>@color/special_product_card_green</item>
+        <item>@color/special_product_card_pink</item>
+        <item>@color/special_product_card_blue</item>
+        <item>@color/special_product_card_orange</item>
+        <item>@color/special_product_card_purple</item>
+    </array>
+
+    <array name="special_product_card_background">
+        <item>@color/special_product_card_light_green</item>
+        <item>@color/special_product_card_light_pink</item>
+        <item>@color/special_product_card_light_blue</item>
+        <item>@color/special_product_card_light_orange</item>
+        <item>@color/special_product_card_light_purple</item>
+    </array>
+
+    <color name="black">#2a2b2b</color>
+
+    <color name="item_image_gradient_bottom">#334c4c4c</color>
+    <color name="item_image_gradient_top">#00000000</color>
+    <color name="green">#15AF68</color>
 </resources>

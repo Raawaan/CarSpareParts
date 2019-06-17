@@ -25,9 +25,7 @@ import android.widget.Button
 import android.R.attr.action
 
 import android.widget.ImageButton
-import com.example.carspareparts.ConnectionLiveData
 import com.example.carspareparts.CustomCart
-import kotlinx.android.synthetic.main.content_home.*
 
 
 class HomeFragment : Fragment() {
@@ -54,11 +52,8 @@ class HomeFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         homeFragmentViewModel= ViewModelProviders.of(this).get(HomeFragmentViewModel::class.java)
-        ConnectionLiveData.observe(this, Observer {
-            if (it!=null&&it.isConnected){
-                homeFragmentViewModel.getSparePartTypeList()
-            }
-        })
+
+        homeFragmentViewModel.getSparePartTypeList()
         listOfSparePartTypRecyclerView.layoutManager = LinearLayoutManager(activity)
         homeFragmentViewModel.getSparePartTypeLiveData().observe(this, Observer {
             if(it !is ParseException){
@@ -77,7 +72,7 @@ class HomeFragment : Fragment() {
                 listOfSparePartTypRecyclerView.adapter = sparePartTypeAdapter
             }
 //            else{
-//                Toast.makeText(context,it.message,Toast.LENGTH_SHORT).show()
+//                Toast.makeText(context,it.message,Toast.LENGTH_LONG).show()
 //            }
         })
 

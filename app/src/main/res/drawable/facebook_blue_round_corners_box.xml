@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/facebook_color"/>
+
+
+    <padding android:left="1px"
+             android:top="1px"
+             android:right="1px"
+             android:bottom="1px"
+        />
+
+    <corners android:bottomRightRadius="@dimen/big_round_corner_radius"
+             android:bottomLeftRadius="@dimen/big_round_corner_radius"
+             android:topLeftRadius="@dimen/big_round_corner_radius"
+             android:topRightRadius="@dimen/big_round_corner_radius"/>
+</shape>

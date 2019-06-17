@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import com.example.carspareparts.ConnectionLiveData
 import com.example.carspareparts.R
 import com.example.carspareparts.SparePartDetails
 import com.squareup.picasso.Picasso
@@ -41,40 +40,36 @@ lateinit var sparePartDetailsViewModel: SparePartDetailsViewModel
         detailsPrice.text=sparePartDetails?.price.toString().plus("LE")
         Picasso.get().load(sparePartDetails?.image).into(productImageView)
         sparePartDetailsViewModel= ViewModelProviders.of(this).get(SparePartDetailsViewModel::class.java)
-        ConnectionLiveData.observe(this, Observer {
-            addToCartBtn.isClickable = it!=null&&it.isConnected
-
-        })
-
         addToCartBtn.setOnClickListener {
+            addToCartBtn.isClickable=false
             sparePartDetailsViewModel.addItemToCart(sparePartDetails,quantity)
+
         }
-              plusBtn.setOnClickListener {
+        plusBtn.setOnClickListener {
         if (quantity<4){
             quantity++
             quantityTextView.text=quantity.toString()
             }
             else
-            Toast.makeText(context,"quantity can't be more than 4 items",Toast.LENGTH_SHORT).show()
+            Toast.makeText(context,"quantity can't be more than 4 items",Toast.LENGTH_LONG).show()
         }
         minusBtn.setOnClickListener {
             if(quantity>1){
                 quantity--
                 quantityTextView.text=quantity.toString()
             }
-            else
-            Toast.makeText(context,"quantity can't be less than one item",Toast.LENGTH_SHORT).show()
+            Toast.makeText(context,"quantity can't be less than one item",Toast.LENGTH_LONG).show()
         }
         sparePartDetailsViewModel.requestResult().observe(this, Observer {
             if(it==null){
                 activity?.cartView?.getAllInCart()
             }
             else
-                Toast.makeText(context,it.message,Toast.LENGTH_SHORT).show()
+                Toast.makeText(context,it.message,Toast.LENGTH_LONG).show()
 
         })
         sparePartDetailsViewModel.getStringException().observe(this, Observer {
-            Toast.makeText(context,it,Toast.LENGTH_SHORT).show()
+            Toast.makeText(context,it,Toast.LENGTH_LONG).show()
 
         })
     }

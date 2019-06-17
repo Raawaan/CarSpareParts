@@ -33,10 +33,11 @@ class SparePartDetailsViewModel : ViewModel() {
                     stringException.postValue("added to cart")
                 }
 
-            } else if(e!=null)
-                pinException.postValue(e)
-            else
+            } else{
                 stringException.postValue("already added item to cart")
+                pinException.postValue(e)
+
+            }
         }
     }
 
