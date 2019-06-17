@@ -1,4 +1,4 @@
-package com.example.carspareparts.home
+package com.example.carspareparts.categories
 
 import android.view.LayoutInflater
 import android.view.View

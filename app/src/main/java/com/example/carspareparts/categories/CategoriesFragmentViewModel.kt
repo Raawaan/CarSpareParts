@@ -1,11 +1,11 @@
-package com.example.carspareparts.home
+package com.example.carspareparts.categories
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel;
 import com.parse.ParseObject
 import com.parse.ParseQuery
 
-//class HomeFragmentViewModel : ViewModel() {
+//class CategoriesFragmentViewModel : ViewModel() {
 //    private val sparePartTypeList = MutableLiveData<List<ParseObject>>()
 //    fun getSparePartTypeList(){
 //        val sparePartTypeQuery = ParseQuery<ParseObject>("spare_part_type")
@@ -22,7 +22,7 @@ import com.parse.ParseQuery
 //    }
 //}
 
-class HomeFragmentViewModel : ViewModel() {
+class CategoriesFragmentViewModel : ViewModel() {
     private val sparePartTypeList = MutableLiveData<List<ParseObject>>()
     private val set= mutableSetOf<ParseObject>()
     fun getSparePartTypeList(){

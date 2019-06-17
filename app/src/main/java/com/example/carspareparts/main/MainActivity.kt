@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager.POP_BACK_STACK_INCLUSIVE
 import androidx.lifecycle.ViewModelProviders
 import com.example.carspareparts.AboutFragment
-import com.example.carspareparts.home.HomeFragment
+import com.example.carspareparts.categories.CategoriesFragment
 import com.example.carspareparts.login.LoginActivity
 import com.parse.ParseUser
 import kotlinx.android.synthetic.main.activity_main.*
@@ -28,8 +28,8 @@ import com.parse.ParseObject
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     lateinit var mainViewModel: MainViewModel
-    private val homeFragment: HomeFragment by lazy {
-        HomeFragment.newInstance()
+    private val categoriesFragment: CategoriesFragment by lazy {
+        CategoriesFragment.newInstance()
     }
     private val ordersFragment: OrdersFragment by lazy {
         OrdersFragment.newInstance()
@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private fun attachHomeFragment() {
         supportFragmentManager.
             beginTransaction()
-            .replace(R.id.fragmentPlaceholder, homeFragment, "a").commit()
+            .replace(R.id.fragmentPlaceholder, categoriesFragment, "a").commit()
     }
 
     private fun setUserNameAndEmailToNavDrawer() {
@@ -95,7 +95,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // Handle navigation view item clicks here.
         when (item.itemId) {
             R.id.nav_home -> {
-                replaceFragments(homeFragment)
+                replaceFragments(categoriesFragment)
             }
             R.id.nav_orders -> {
                 replaceFragments(ordersFragment)
