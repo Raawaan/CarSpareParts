@@ -18,6 +18,7 @@ class OrderDetailsAdapter(private val products: List<SparePartDetails>) :
         val product = products[position]
         holder.itemView.nameTextView.text = product.name
         holder.itemView.priceTextView.text = product.price.toString()
+        holder.itemView.statusTextView.visibility = View.VISIBLE
         if (product.delivered) {
             holder.itemView.statusTextView.text = "Delivered"
             holder.itemView.statusTextView.setTextColor(Color.GREEN)
