@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.carspareparts.ConnectionLiveData
 
 import com.example.carspareparts.R
 import com.parse.ParseObject
@@ -32,7 +33,11 @@ class OrderDetailsFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(OrderDetailsViewModel::class.java)
-        viewModel.getRelationsProductInfo(arguments?.getParcelable("selectedOrder"))
+        ConnectionLiveData.observe(this, Observer {
+            if (it!=null&&it.isConnected){
+                viewModel.getRelationsProductInfo(arguments?.getParcelable("selectedOrder"))
+            }
+        })
         ordersDetails.layoutManager= LinearLayoutManager(context)
         viewModel.getSparePartDetails().observe(this, Observer {
             if(!it.isNullOrEmpty()){

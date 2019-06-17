@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import com.example.carspareparts.ConnectionLiveData
 import com.example.carspareparts.R
 import com.example.carspareparts.SparePartDetails
 import com.squareup.picasso.Picasso
@@ -40,6 +41,11 @@ lateinit var sparePartDetailsViewModel: SparePartDetailsViewModel
         detailsPrice.text=sparePartDetails?.price.toString().plus("LE")
         Picasso.get().load(sparePartDetails?.image).into(productImageView)
         sparePartDetailsViewModel= ViewModelProviders.of(this).get(SparePartDetailsViewModel::class.java)
+        ConnectionLiveData.observe(this, Observer {
+            addToCartBtn.isClickable = it!=null&&it.isConnected
+
+        })
+
         addToCartBtn.setOnClickListener {
             sparePartDetailsViewModel.addItemToCart(sparePartDetails,quantity)
         }
@@ -56,6 +62,7 @@ lateinit var sparePartDetailsViewModel: SparePartDetailsViewModel
                 quantity--
                 quantityTextView.text=quantity.toString()
             }
+            else
             Toast.makeText(context,"quantity can't be less than one item",Toast.LENGTH_SHORT).show()
         }
         sparePartDetailsViewModel.requestResult().observe(this, Observer {

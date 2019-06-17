@@ -10,6 +10,7 @@ import com.parse.ParseObject
 class MyApplication:Application(){
     override fun onCreate() {
         super.onCreate()
+        ConnectionLiveData.init(this)
         Parse.initialize( Parse.Configuration.Builder(this)
             .applicationId(getString(R.string.back4app_app_id))
             .clientKey(getString(R.string.back4app_client_key))

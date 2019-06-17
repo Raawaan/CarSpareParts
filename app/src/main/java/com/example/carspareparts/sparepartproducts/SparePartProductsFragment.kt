@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.carspareparts.ConnectionLiveData
 import com.example.carspareparts.R
 import com.example.carspareparts.main.MainActivity
 import com.example.carspareparts.sparepartdetails.SparePartDetailsFragment
@@ -41,7 +42,12 @@ class SparePartProductsFragment : Fragment() {
         activity?.toolbar?.title= arguments?.getString("typeName").toString()
         objectClickedId= arguments?.getString("objectId").toString()
         listOfSpareDetailsRecyclerView.layoutManager = LinearLayoutManager(context)
-        sparePartProductViewModel.getProductsByType(objectClickedId)
+        ConnectionLiveData.observe(this, Observer {
+            if (it!=null&&it.isConnected){
+                sparePartProductViewModel.getProductsByType(objectClickedId)
+            }
+        })
+
         sparePartProductViewModel.getSparePartDetails().observe(this, Observer {
             progressBar.visibility=View.GONE
             sparePartProductAdapter= SparePartProductAdapter(it) {

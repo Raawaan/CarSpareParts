@@ -84,18 +84,18 @@ class CartActivity : AppCompatActivity() {
             .setTitle("Enter Delivery Address")
         val mAlertDialog = mBuilder.show()
         mDialogView.dialogConfirmBtn.setOnClickListener {
-            if (mDialogView.buildingNoTv.text.isNullOrEmpty()||
-                mDialogView.streetTv.text.isNullOrEmpty()||
-                mDialogView.cityTv.text.isNullOrEmpty()||
-                mDialogView.countryTv.text.isNullOrEmpty()
+            if (mDialogView.buildingNoTv.text.trim().isEmpty()||
+                mDialogView.streetTv.text.trim().isEmpty()||
+                mDialogView.cityTv.text.trim().isEmpty()||
+                mDialogView.countryTv.text.trim().isEmpty()
             ) {
                 Toast.makeText(this, "Fields can't be empty", Toast.LENGTH_SHORT).show()
 
             } else {
                 cartViewModel.makeOrder(list,mDialogView.streetTv.text.toString()
-                    .plus(mDialogView.streetTv.text.toString())
-                    .plus(mDialogView.cityTv.text.toString())
-                    .plus(mDialogView.countryTv.text.toString()))
+                    .plus(" "+mDialogView.streetTv.text.toString())
+                    .plus(" "+mDialogView.cityTv.text.toString())
+                    .plus(" "+mDialogView.countryTv.text.toString()))
                 mAlertDialog.dismiss()
             }
         }
