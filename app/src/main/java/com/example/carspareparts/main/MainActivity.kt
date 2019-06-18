@@ -20,12 +20,28 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_home.*
 
 import com.example.carspareparts.R
+import com.example.carspareparts.SparePartDetails
 import com.example.carspareparts.cart.CartActivity
+import com.example.carspareparts.home.HomeFragment
 import com.example.carspareparts.order.OrdersFragment
+import com.example.carspareparts.orderdetails.OrderDetailsFragment
+import com.example.carspareparts.sparepartdetails.SparePartDetailsFragment
+import com.example.carspareparts.sparepartproducts.SparePartProductsFragment
 import com.parse.ParseObject
 
+interface BaseFragmentInteractionListener {
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+    fun onAddToCartClick(product: SparePartDetails, quantity: Int = 1)
+
+    fun onProductClick(product: SparePartDetails)
+}
+
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
+    HomeFragment.OnFragmentInteractionListener,
+    SparePartProductsFragment.OnFragmentInteractionListener,
+    CategoriesFragment.OnFragmentInteractionListener,
+    OrderDetailsFragment.OnFragmentInteractionListener,
+    SparePartDetailsFragment.OnFragmentInteractionListener{
 
     lateinit var mainViewModel: MainViewModel
     private val categoriesFragment: CategoriesFragment by lazy {
@@ -66,7 +82,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
-
     private fun attachHomeFragment() {
         supportFragmentManager.
             beginTransaction()
@@ -89,6 +104,31 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         } else {
             super.onBackPressed()
         }
+    }
+
+    override fun onAllCategoriesClick() {
+        supportFragmentManager.
+            beginTransaction()
+            .replace(R.id.fragmentPlaceholder, categoriesFragment, "a").commit()
+    }
+
+    override fun onCategoryClick(categoryId: String, categoryName: String) {
+        supportFragmentManager
+            .beginTransaction()
+            .add(R.id.fragmentPlaceholder, SparePartProductsFragment.newInstance(categoryId, categoryName))
+            .addToBackStack("home")
+            .commit()
+    }
+
+    override fun onAddToCartClick(product: SparePartDetails, quantity: Int) =
+        mainViewModel.addItemToCart(product, quantity)
+
+    override fun onProductClick(product: SparePartDetails) {
+        supportFragmentManager
+            .beginTransaction()
+            .add(R.id.fragmentPlaceholder, SparePartDetailsFragment.newInstance(product))
+            .addToBackStack(null)
+            .commit()
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {

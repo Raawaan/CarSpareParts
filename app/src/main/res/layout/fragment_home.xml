@@ -1,0 +1,218 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:id="@+id/fragment_home"
+              android:background="@color/background_light_grey">
+
+    <androidx.core.widget.NestedScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <include
+                    android:layout_height="@dimen/home_pager_height"
+                    android:layout_width="match_parent"
+                    layout="@layout/layout_view_pager"/>
+
+            <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/little_space"
+                    android:paddingLeft="@dimen/little_space"
+                    android:paddingRight="@dimen/little_space"
+                    android:layout_marginBottom="@dimen/little_space">
+                <androidx.recyclerview.widget.RecyclerView
+                        android:layout_marginBottom="@dimen/some_space"
+                        android:id="@+id/categoriesRecyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+            </androidx.cardview.widget.CardView>
+
+            <include layout="@layout/exclusive_item_card"/>
+
+
+            <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/little_space">
+                <LinearLayout
+                        android:paddingTop="@dimen/some_space"
+                        android:paddingStart="@dimen/some_space"
+                        android:paddingBottom="@dimen/some_space"
+                        android:paddingEnd="@dimen/little_space"
+                        android:id="@+id/today_offers_title_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="start"
+                            android:text="New products"
+                            android:textColor="@color/orange"
+                            android:textSize="@dimen/large_text_size"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/shoppingItemsRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            <androidx.cardview.widget.CardView
+                    android:visibility="visible"
+                    app:cardBackgroundColor="@color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/little_space">
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/some_space"
+                        android:orientation="vertical">
+                    <TextView
+                            android:layout_marginTop="@dimen/some_space"
+                            android:layout_marginBottom="@dimen/some_space"
+                            android:gravity="center"
+                            android:textSize="@dimen/extra_large_text_size"
+                            android:text="Didn't find what you're looking for?"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"/>
+                    <TextView
+                            android:gravity="center"
+                            android:textSize="@dimen/large_text_size"
+                            android:text="You can search in all categories"
+                            android:layout_marginTop="@dimen/little_space"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"/>
+
+                    <LinearLayout
+                            android:layout_marginTop="@dimen/little_space"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+                        <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_margin="@dimen/little_space"
+                                android:orientation="vertical"
+                                android:layout_height="match_parent">
+                            <ImageView
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/tyres"
+                                    android:layout_width="75dp"
+                                    android:layout_height="75dp"/>
+                            <TextView
+                                    android:gravity="center"
+                                    android:textSize="@dimen/small_text_size"
+                                    android:text="Tyres"
+                                    android:layout_marginTop="@dimen/little_space"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/white"/>
+                        </LinearLayout>
+                        <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_margin="@dimen/little_space"
+                                android:orientation="vertical"
+                                android:layout_height="match_parent">
+                            <ImageView
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/seat"
+                                    android:layout_width="75dp"
+                                    android:layout_height="75dp"/>
+                            <TextView
+                                    android:gravity="center"
+                                    android:textSize="@dimen/small_text_size"
+                                    android:text="Interior"
+                                    android:layout_marginTop="@dimen/little_space"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/white"/>
+                        </LinearLayout>
+                        <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_margin="@dimen/little_space"
+                                android:orientation="vertical"
+                                android:layout_height="match_parent">
+                            <ImageView
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/tools"
+                                    android:layout_width="75dp"
+                                    android:layout_height="75dp"/>
+                            <TextView
+                                    android:gravity="center"
+                                    android:textSize="@dimen/small_text_size"
+                                    android:text="Tools"
+                                    android:layout_marginTop="@dimen/little_space"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/white"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <Button
+                            android:layout_marginLeft="@dimen/extra_large_space"
+                            android:layout_marginRight="@dimen/extra_large_space"
+                            android:layout_marginTop="@dimen/some_space"
+                            android:paddingRight="@dimen/large_space"
+                            android:paddingLeft="@dimen/large_space"
+                            android:id="@+id/showCategoriesButton"
+                            android:layout_gravity="center"
+                            android:layout_margin="@dimen/little_space"
+                            android:minWidth="@dimen/half_screen_width"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/orange_button"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/mid_text_size"
+                            android:text="Show all categories"
+                            android:textAllCaps="false" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

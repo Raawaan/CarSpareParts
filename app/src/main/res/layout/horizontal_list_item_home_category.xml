@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
+              android:id="@+id/list_item_horizontal_categories"
+                                   android:layout_margin="@dimen/some_space"
+              android:orientation="horizontal"
+              android:gravity="center_vertical"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content">
+
+    <LinearLayout
+            android:layout_margin="@dimen/little_space"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        <ImageView
+                android:layout_margin="@dimen/little_space"
+                android:id="@+id/categoryImageView"
+                tools:src="@drawable/tyres"
+                android:layout_width="@dimen/category_image_dimen"
+                android:layout_height="@dimen/category_image_dimen"
+                android:scaleType="centerCrop"/>
+
+        <TextView
+                tools:text="Tyres"
+                android:id="@+id/categoryNameTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:textSize="@dimen/large_text_size"/>
+
+    </LinearLayout>
+
+
+
+</androidx.cardview.widget.CardView>

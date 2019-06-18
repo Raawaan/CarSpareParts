@@ -10,7 +10,8 @@ import com.example.carspareparts.SparePartDetails
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.list_item_shopping_item.view.*
 
-class OrderDetailsAdapter(private val products: List<SparePartDetails>) :
+class OrderDetailsAdapter(private val itemClickListener: OnItemClickListener?,
+                          private val products: List<SparePartDetails>) :
     RecyclerView.Adapter<OrderDetailsAdapter.SparePartProductHolderView>() {
     open class SparePartProductHolderView(itemView: View) : RecyclerView.ViewHolder(itemView)
 
@@ -29,6 +30,12 @@ class OrderDetailsAdapter(private val products: List<SparePartDetails>) :
         holder.itemView.counterTextView.text = product.quantity.toString()
 
         Picasso.get().load(product.image).into(holder.itemView.itemImageView)
+        holder.itemView.buyButton.setOnClickListener {
+            itemClickListener?.onAddToCartClick(  product)
+        }
+        holder.itemView.detailsButton.setOnClickListener {
+            itemClickListener?.onProductClick(product)
+        }
 //        Picasso.get().load(product.supplierLogo).into(holder.itemView.supplier_image)
 
     }
@@ -44,4 +51,11 @@ class OrderDetailsAdapter(private val products: List<SparePartDetails>) :
     }
 
     override fun getItemCount() = products.size
+
+    interface OnItemClickListener {
+
+        fun onProductClick(product: SparePartDetails)
+
+        fun onAddToCartClick(product: SparePartDetails)
+    }
 }

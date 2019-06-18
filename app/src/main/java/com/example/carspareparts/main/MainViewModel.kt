@@ -1,6 +1,11 @@
 package com.example.carspareparts.main
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.carspareparts.SparePartDetails
+import com.parse.ParseException
+import com.parse.ParseObject
+import com.parse.ParseQuery
 import com.parse.ParseUser
 
 /**
@@ -12,5 +17,45 @@ class MainViewModel :ViewModel(){
             if (it==null)
                 it?.message
         }
+    }
+
+    private val pinException = MutableLiveData<ParseException>()
+    private val stringException = MutableLiveData<String>()
+
+    fun addItemToCart(sparePart: SparePartDetails?, quantity:Int = 1) {
+        val cartItem = ParseObject("pinned_order")
+        cartItem.put("product_name", sparePart?.name!!)
+        cartItem.put("supplier_name", sparePart.supplierName!!)
+        cartItem.put("total_price", sparePart.price!!)
+        cartItem.put("supplier_id", sparePart.supplierId!!)
+        cartItem.put("quantity", quantity)
+        cartItem.put("spare_part_id", sparePart.sparePartId!!)
+        cartItem.put("supplier_spare_part_id",sparePart.objectId!!)
+
+        val cartQuery = ParseQuery.getQuery<ParseObject>("pinned_order")
+        cartQuery.fromLocalDatastore()
+        cartQuery.whereEqualTo("product_name", sparePart.name)
+        cartQuery.whereEqualTo("supplier_name", sparePart.supplierName)
+        cartQuery.findInBackground { objects, e ->
+            if (objects.size == 0) {
+                cartItem.pinInBackground {
+                    pinException.postValue(it)
+                    stringException.postValue("added to cart")
+                }
+
+            } else{
+                stringException.postValue("already added item to cart")
+                pinException.postValue(e)
+
+            }
+        }
+    }
+
+
+    fun requestResult(): MutableLiveData<ParseException> {
+        return pinException
+    }
+    fun getStringException(): MutableLiveData<String> {
+        return stringException
     }
 }

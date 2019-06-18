@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginBottom="@dimen/little_space"
+              android:layout_marginEnd="2dp"
+              android:layout_marginStart="@dimen/little_space"
+              android:focusable="false"
+              android:orientation="vertical"
+              tools:ignore="RtlSymmetry">
+
+    <LinearLayout
+            android:id="@+id/list_item_items"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <RelativeLayout
+                android:layout_width="@dimen/grid_item_width"
+                android:layout_height="@dimen/grid_item_width">
+
+            <ImageView
+                    android:id="@+id/itemImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:background="@color/white"
+                    android:focusable="false"
+                    android:scaleType="fitCenter"/>
+
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/item_image_gradient"/>
+
+        </RelativeLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:minHeight="50dp"
+                android:padding="@dimen/little_space"
+                android:orientation="vertical">
+
+            <TextView
+                    android:ellipsize="end"
+                    tools:text="All Gears performance"
+                    android:maxLines="1"
+                    android:id="@+id/itemNameTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="bottom"
+                    android:textColor="@color/dark_grey"
+                    android:paddingBottom="@dimen/little_space"
+                    android:textSize="@dimen/large_text_size"/>
+
+            <TextView
+                    android:textStyle="bold"
+                    android:layout_marginTop="@dimen/little_space"
+                    android:id="@+id/itemPriceTextView"
+                    tools:text="40 LE"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:textColor="@color/orange"/>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="@dimen/little_space"
+                    android:clipToPadding="false"
+                    android:clipChildren="false"
+                    android:orientation="horizontal">
+
+                <Button
+                        android:id="@+id/buyButton"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.5"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/orange_button"
+                        android:drawablePadding="@dimen/little_space"
+                        android:drawableStart="@drawable/ic_shopping_cart_white_18dp"
+                        android:minHeight="0dp"
+                        android:layout_marginEnd="@dimen/little_space"
+                        android:minWidth="0dp"
+                        android:padding="@dimen/little_space"
+                        android:text="Buy"
+                        android:textAlignment="center"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/small_text_size"/>
+
+                <Button
+                        android:id="@+id/wishlistButton"
+                        android:layout_width="0dp"
+                        android:layout_weight=".5"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/red_button"
+                        android:drawablePadding="@dimen/little_space"
+                        android:drawableStart="@drawable/ic_favorite_white_18dp"
+                        android:minHeight="0dp"
+                        android:minWidth="0dp"
+                        android:padding="@dimen/little_space"
+                        android:text="Wishlist"
+                        android:textAlignment="center"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/small_text_size"/>
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
