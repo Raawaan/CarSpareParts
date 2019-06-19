@@ -2,8 +2,9 @@
     <string name="app_name">Car SpareParts</string>
     <string name="back4app_server_url">https://parseapi.back4app.com/</string>
 
-    <string name="back4app_app_id">qusvA4jZRdO8Pg8ZvyvwgEQu82k0k8WBbIJ1cwAX</string>
-    <string name="back4app_client_key">dMkcizJ2mnVqh8W4hrnSJeZxWdFliFvWxul8iYWV</string>
+    <string name="back4app_app_id">CG43izogj44mHzH9CBP2HJRO3wKNk4xBJBjJ8osK
+    </string>
+    <string name="back4app_client_key">rMAThfUzrIvr0nkASr2en3H7M9UErteNZhmXqRxv</string>
     <string name="password_confirmation">password confirmation</string>
     <string name="password">password</string>
     <string name="email">Email</string>
