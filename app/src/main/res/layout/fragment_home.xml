@@ -1,10 +1,10 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:orientation="vertical"
-              android:id="@+id/fragment_home"
-              android:background="@color/background_light_grey">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:orientation="vertical"
+             android:id="@+id/fragment_home"
+             android:background="@color/background_light_grey">
 
     <androidx.core.widget.NestedScrollView
             android:id="@+id/scrollView"
@@ -178,7 +178,7 @@
                             android:textColor="@color/white"
                             android:textSize="@dimen/mid_text_size"
                             android:text="Show all categories"
-                            android:textAllCaps="false" />
+                            android:textAllCaps="false"/>
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -187,7 +187,30 @@
 
     </androidx.core.widget.NestedScrollView>
 
-</LinearLayout>
+    <FrameLayout
+            android:id="@+id/loadingLayout"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        <Button
+                android:visibility="gone"
+                android:id="@+id/retryButton"
+                android:background="@drawable/orange_button"
+                android:text="Retry"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+    </FrameLayout>
+
+
+</FrameLayout>
 
 
 

@@ -44,9 +44,8 @@ class AutoSlideViewPagerManager private constructor(
             background = ResourcesCompat.getDrawable(resources, R.drawable.indicator_background, null)
         }
         setCurrentPage(mCurrentPage)
-        mHandler = InnerHandler(this).apply {
-            sendMessageDelayed(mHandler!!.obtainMessage(), AUTO_SLIDE_DELAY)
-        }
+        mHandler = InnerHandler(this)
+        mHandler?.sendMessageDelayed(mHandler!!.obtainMessage(), AUTO_SLIDE_DELAY)
     }
 
     private fun goToNextPage() {

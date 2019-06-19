@@ -6,13 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.carspareparts.R
-import com.example.carspareparts.SparePartDetails
 import com.example.carspareparts.setImageUrl
 import com.parse.ParseObject
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.horizontal_list_item_home_category.view.*
-import kotlinx.android.synthetic.main.horizontal_list_item_home_item.view.*
-import kotlinx.android.synthetic.main.spare_part_type_list.view.*
 
 class HorizontalCategoriesAdapter(private val itemClickListener: OnItemClickListener?) :
         RecyclerView.Adapter<HorizontalCategoriesAdapter.HorizontalCategoriesViewHolder>() {
@@ -41,7 +37,7 @@ class HorizontalCategoriesAdapter(private val itemClickListener: OnItemClickList
                 val categoryId = objectId
                 val categoryName = getString("type")
                 val categoryImageUrl = getString("image")
-                itemImageView.setImageUrl(categoryImageUrl)
+                categoryImageView.setImageUrl(categoryImageUrl)
                 categoryNameTextView.text = categoryName
                 this@view.setOnClickListener {
                     adapter.itemClickListener?.onCategoryClick(categoryId, categoryName ?: "")

@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 
@@ -15,31 +16,30 @@ import com.example.carspareparts.SparePartDetails
 import com.example.carspareparts.home.adapter.HomeSparePartProductsAdapter
 import com.example.carspareparts.home.adapter.HorizontalCategoriesAdapter
 import com.example.carspareparts.main.BaseFragmentInteractionListener
+import com.example.carspareparts.setImageUrl
 import com.parse.ParseObject
 import kotlinx.android.synthetic.main.exclusive_item_card.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.layout_view_pager.*
 
-private const val ARG_VIEW_PAGER_IMAGES = "com.example.carspareparts.home.HomeFragment.ARG_VIEW_PAGER_IMAGES"
-private const val ARG_CATEGORIES = "com.example.carspareparts.home.HomeFragment.ARG_CATEGORIES"
-private const val ARG_EXCLUSIVE_ITEM = "com.example.carspareparts.home.HomeFragment.ARG_EXCLUSIVE_ITEM"
-private const val ARG_OTHER_ITEMS = "com.example.carspareparts.home.HomeFragment.ARG_OTHER_ITEMS"
-
 class HomeFragment : Fragment(),
     HorizontalCategoriesAdapter.OnItemClickListener,
     HomeSparePartProductsAdapter.OnItemClickListener {
 
+    companion object {
+
+        @JvmStatic
+        fun newInstance() = HomeFragment()
+    }
+
     private var listener: OnFragmentInteractionListener? = null
 
-    private var viewPagerImages: List<String>? = null
-    private var categories: List<ParseObject>? = null
-    private var exclusiveItem: SparePartDetails? = null
-    private var otherItems: List<SparePartDetails>? = null
+    private val viewModel: HomeFragmentViewModel by lazy { HomeFragmentViewModel.getInstance(this) }
 
     private val categoriesAdapter by lazy { HorizontalCategoriesAdapter(this) }
     private val productsAdapter by lazy { HomeSparePartProductsAdapter(this) }
 
-    private lateinit var slider: AutoSlideViewPagerManager
+    private var slider: AutoSlideViewPagerManager? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,26 +48,30 @@ class HomeFragment : Fragment(),
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        arguments?.run {
-            viewPagerImages =
-                if (containsKey(ARG_VIEW_PAGER_IMAGES)) getStringArrayList(ARG_VIEW_PAGER_IMAGES)
-                else null
-            categories =
-                if (containsKey(ARG_CATEGORIES)) getParcelableArrayList(ARG_CATEGORIES)
-                else null
-            exclusiveItem =
-                if (containsKey(ARG_EXCLUSIVE_ITEM)) getParcelable(ARG_EXCLUSIVE_ITEM)
-                else null
-            otherItems =
-                if (containsKey(ARG_OTHER_ITEMS)) getParcelableArrayList(ARG_OTHER_ITEMS)
-                else null
+        viewModel.run {
+            viewPagerImages.observe(this@HomeFragment, Observer { it?.run(::showViewPagerImages) })
+            categories.observe(this@HomeFragment, Observer { it?.run(::showCategories) })
+            exclusiveItem.observe(this@HomeFragment, Observer { it?.run(::showExclusiveItem) })
+            otherItems.observe(this@HomeFragment, Observer { it?.run(::showOtherItems) })
+            isAllSet.observe(this@HomeFragment, Observer { it?.run(::showHomeData) })
+            loadData()
         }
-        viewPagerImages?.run(::showViewPagerImages)
-        categories?.run(::showCategories)
-        exclusiveItem?.run(::showExclusiveItem)
-        otherItems?.run(::showOtherItems)
-        showCategoriesButton.setOnClickListener {
-            listener?.onAllCategoriesClick()
+        showCategoriesButton.setOnClickListener { listener?.onAllCategoriesClick() }
+        retryButton.setOnClickListener {
+            loadData()
+            retryButton.visibility = View.GONE
+            progressBar.visibility = View.VISIBLE
+        }
+    }
+
+    private fun loadData() = viewModel.loadHomeData()
+
+    private fun showHomeData(isAllSet: Boolean) {
+        if (isAllSet) {
+            loadingLayout.visibility = View.GONE
+        } else {
+            progressBar.visibility = View.GONE
+            retryButton.visibility = View.VISIBLE
         }
     }
 
@@ -86,6 +90,7 @@ class HomeFragment : Fragment(),
     private fun showExclusiveItem(exclusiveItem: SparePartDetails) {
         exclusiveItemName.text = exclusiveItem.name
         exclusiveItemPrice.text = "${exclusiveItem.price} LE"
+        exclusiveItemImage.setImageUrl(exclusiveItem.image)
         exclusiveItemBuyButton.setOnClickListener {
             listener?.onAddToCartClick(exclusiveItem)
         }
@@ -113,7 +118,7 @@ class HomeFragment : Fragment(),
     }
 
     override fun onDestroy() {
-        slider.destroy()
+        slider?.destroy()
         super.onDestroy()
     }
 
@@ -131,23 +136,5 @@ class HomeFragment : Fragment(),
         fun onCategoryClick(categoryId: String, categoryName: String)
 
         fun onAllCategoriesClick()
-    }
-
-    companion object {
-
-        @JvmStatic
-        fun newInstance(
-            pagerImages: ArrayList<String> = arrayListOf(),
-            categories: ArrayList<ParseObject> = arrayListOf(),
-            exclusiveItem: SparePartDetails? = null,
-            otherItems: ArrayList<SparePartDetails> = arrayListOf()
-        ) = HomeFragment().apply {
-            arguments = Bundle().apply {
-                putStringArrayList(ARG_VIEW_PAGER_IMAGES, pagerImages)
-                putParcelableArrayList(ARG_CATEGORIES, categories)
-                putParcelable(ARG_EXCLUSIVE_ITEM, exclusiveItem)
-                putParcelableArrayList(ARG_OTHER_ITEMS, otherItems)
-            }
-        }
     }
 }

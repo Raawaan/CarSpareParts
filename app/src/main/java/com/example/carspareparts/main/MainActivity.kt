@@ -43,7 +43,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     OrderDetailsFragment.OnFragmentInteractionListener,
     SparePartDetailsFragment.OnFragmentInteractionListener{
 
-    lateinit var mainViewModel: MainViewModel
+    private lateinit var mainViewModel: MainViewModel
+    private val homeFragment: HomeFragment by lazy {
+        HomeFragment.newInstance()
+    }
     private val categoriesFragment: CategoriesFragment by lazy {
         CategoriesFragment.newInstance()
     }
@@ -85,7 +88,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private fun attachHomeFragment() {
         supportFragmentManager.
             beginTransaction()
-            .replace(R.id.fragmentPlaceholder, categoriesFragment, "a").commit()
+            .replace(R.id.fragmentPlaceholder, homeFragment, "a").commit()
     }
 
     private fun setUserNameAndEmailToNavDrawer() {
