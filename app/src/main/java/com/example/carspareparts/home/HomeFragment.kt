@@ -18,6 +18,7 @@ import com.example.carspareparts.home.adapter.HorizontalCategoriesAdapter
 import com.example.carspareparts.main.BaseFragmentInteractionListener
 import com.example.carspareparts.setImageUrl
 import com.parse.ParseObject
+import kotlinx.android.synthetic.main.app_bar_home.*
 import kotlinx.android.synthetic.main.exclusive_item_card.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.layout_view_pager.*
@@ -93,6 +94,7 @@ class HomeFragment : Fragment(),
         exclusiveItemImage.setImageUrl(exclusiveItem.image)
         exclusiveItemBuyButton.setOnClickListener {
             listener?.onAddToCartClick(exclusiveItem)
+            activity?.cartView?.getAllInCart()
         }
     }
 

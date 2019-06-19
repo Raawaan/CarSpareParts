@@ -145,22 +145,6 @@
                         android:textAllCaps="false"
                         android:text="Details"/>
 
-                <Button
-                        android:gravity="center"
-                        android:minHeight="0dp"
-                        android:minWidth="0dp"
-                        android:layout_marginStart="@dimen/some_space"
-                        android:padding="@dimen/little_space"
-                        android:textSize="@dimen/small_text_size"
-                        android:id="@+id/buyButton"
-                        android:textColor="@color/white"
-                        android:background="@drawable/orange_button"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:textAllCaps="false"
-                        android:drawablePadding="@dimen/little_space"
-                        android:drawableStart="@drawable/ic_shopping_cart_white_18dp"
-                        android:text="Buy"/>
 
 
             </LinearLayout>

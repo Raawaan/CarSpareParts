@@ -28,6 +28,7 @@ import com.example.carspareparts.orderdetails.OrderDetailsFragment
 import com.example.carspareparts.sparepartdetails.SparePartDetailsFragment
 import com.example.carspareparts.sparepartproducts.SparePartProductsFragment
 import com.parse.ParseObject
+import kotlinx.android.synthetic.main.activity_main.view.*
 
 interface BaseFragmentInteractionListener {
 
@@ -110,6 +111,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onAllCategoriesClick() {
+        val navigationView = findViewById<View>(R.id.nav_view) as NavigationView
+        navigationView.setCheckedItem(R.id.nav_category)
         supportFragmentManager.
             beginTransaction()
             .replace(R.id.fragmentPlaceholder, categoriesFragment, "a").commit()
@@ -123,8 +126,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             .commit()
     }
 
-    override fun onAddToCartClick(product: SparePartDetails, quantity: Int) =
+    override fun onAddToCartClick(product: SparePartDetails, quantity: Int){
         mainViewModel.addItemToCart(product, quantity)
+        cartView?.getAllInCart()
+    }
 
     override fun onProductClick(product: SparePartDetails) {
         supportFragmentManager
@@ -138,6 +143,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // Handle navigation view item clicks here.
         when (item.itemId) {
             R.id.nav_home -> {
+                replaceFragments(homeFragment)
+            } R.id.nav_category -> {
                 replaceFragments(categoriesFragment)
             }
             R.id.nav_orders -> {

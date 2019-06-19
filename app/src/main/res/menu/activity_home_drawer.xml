@@ -10,8 +10,13 @@
                 android:icon="@drawable/ic_home_black_24dp"
                 android:title="Home"/>
         <item
-                android:id="@+id/nav_orders"
+                android:id="@+id/nav_category"
+                android:checked="true"
                 android:icon="@drawable/ic_pending_black_24dp"
+                android:title="Categories"/>
+        <item
+                android:id="@+id/nav_orders"
+                android:icon="@drawable/ic_history_black_24dp"
                 android:title="Orders"/>
         <item
                 android:id="@+id/nav_about"

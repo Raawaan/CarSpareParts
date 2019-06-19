@@ -93,23 +93,6 @@
                         android:textColor="@color/white"
                         android:textSize="@dimen/small_text_size"/>
 
-                <Button
-                        android:id="@+id/wishlistButton"
-                        android:layout_width="0dp"
-                        android:layout_weight=".5"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/red_button"
-                        android:drawablePadding="@dimen/little_space"
-                        android:drawableStart="@drawable/ic_favorite_white_18dp"
-                        android:minHeight="0dp"
-                        android:minWidth="0dp"
-                        android:padding="@dimen/little_space"
-                        android:text="Wishlist"
-                        android:textAlignment="center"
-                        android:textAllCaps="false"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/small_text_size"/>
-
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

@@ -101,22 +101,6 @@
                     android:drawableStart="@drawable/ic_shopping_cart_white_18dp"
                     android:text="Buy"/>
 
-            <Button
-                    android:drawablePadding="@dimen/little_space"
-                    android:minHeight="0dp"
-                    android:minWidth="0dp"
-                    android:padding="@dimen/little_space"
-                    android:layout_marginStart="@dimen/little_space"
-                    android:textSize="@dimen/small_text_size"
-                    android:textAlignment="center"
-                    android:id="@+id/wishlistButton"
-                    android:textColor="@color/white"
-                    android:background="@drawable/red_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAllCaps="false"
-                    android:drawableStart="@drawable/ic_favorite_white_18dp"
-                    android:text="Wishlist"/>
 
         </LinearLayout>
 

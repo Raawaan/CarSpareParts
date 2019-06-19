@@ -30,9 +30,7 @@ class OrderDetailsAdapter(private val itemClickListener: OnItemClickListener?,
         holder.itemView.counterTextView.text = product.quantity.toString()
 
         Picasso.get().load(product.image).into(holder.itemView.itemImageView)
-        holder.itemView.buyButton.setOnClickListener {
-            itemClickListener?.onAddToCartClick(  product)
-        }
+
         holder.itemView.detailsButton.setOnClickListener {
             itemClickListener?.onProductClick(product)
         }
