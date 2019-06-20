@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Car SpareParts</string>
+    <string name="app_name">Car Spare Parts</string>
     <string name="back4app_server_url">https://parseapi.back4app.com/</string>
 
     <string name="back4app_app_id">CG43izogj44mHzH9CBP2HJRO3wKNk4xBJBjJ8osK
@@ -17,6 +17,5 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

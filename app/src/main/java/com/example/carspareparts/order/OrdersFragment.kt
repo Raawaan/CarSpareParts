@@ -39,11 +39,11 @@ class OrdersFragment : Fragment() {
 
         viewModel.getListOrdersLiveData().observe(this, Observer {
             if(it?.size==0){
-                orderProgressBar.visibility=View.GONE
+                ordersListProgressBar.visibility=View.GONE
                 noOrders.visibility=View.VISIBLE
             }
            else if (it!=null){
-                orderProgressBar.visibility=View.GONE
+                ordersListProgressBar.visibility=View.GONE
                 ordersAdapter=OrdersAdapter(it){
                     val bundle = Bundle()
                     bundle.putParcelable("selectedOrder", it)
