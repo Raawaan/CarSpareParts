@@ -16,7 +16,6 @@ import androidx.lifecycle.ViewModelProviders
 import com.example.carspareparts.AboutFragment
 import com.example.carspareparts.ConnectionLiveData
 import com.example.carspareparts.InternetConnectionTextView
-import com.example.carspareparts.home.HomeFragment
 import com.example.carspareparts.login.LoginActivity
 import com.parse.ParseUser
 import kotlinx.android.synthetic.main.activity_main.*
@@ -25,6 +24,7 @@ import kotlinx.android.synthetic.main.app_bar_home.*
 import com.example.carspareparts.R
 import com.example.carspareparts.SparePartDetails
 import com.example.carspareparts.cart.CartActivity
+import com.example.carspareparts.categories.CategoriesFragment
 import com.example.carspareparts.home.HomeFragment
 import com.example.carspareparts.order.OrdersFragment
 import com.example.carspareparts.orderdetails.OrderDetailsFragment

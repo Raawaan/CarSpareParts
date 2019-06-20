@@ -72,7 +72,7 @@ lateinit var sparePartDetailsViewModel: MainViewModel
 
         })
 
-        sparePartDetailsViewModel= ViewModelProviders.of(this).get(SparePartDetailsViewModel::class.java)
+        sparePartDetailsViewModel= ViewModelProviders.of(activity!!).get(MainViewModel::class.java)
         addToCartBtn.setOnClickListener {
             addToCartBtn.isClickable=false
             sparePartDetails?.run {
