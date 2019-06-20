@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.carspareparts.ConnectionLiveData
 
 import com.example.carspareparts.R
 import com.example.carspareparts.orderdetails.OrderDetailsFragment
@@ -34,6 +35,11 @@ class OrdersFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(OrdersViewModel::class.java)
+        ConnectionLiveData.observe(this, Observer {
+            if (it!=null&&it.isConnected){
+                viewModel.getPendingOrders()
+            }
+        })
         viewModel.getPendingOrders()
         pendingOrdersRecyclerView.layoutManager = LinearLayoutManager(context)
 

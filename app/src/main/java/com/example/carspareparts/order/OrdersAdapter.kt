@@ -30,6 +30,7 @@ class OrdersAdapter(
         holder.itemView.orderDateTextView.text = frm.format(date).toString()
         holder.itemView.orderIdTextView.text = "Order #${position.plus(1)}"
         holder.itemView.orderTotalTextView.text = order.get("total_price").toString().plus(" LE")
+        holder.itemView.orderAddress.text = "Address "+ order.get("address").toString()
 
     }
 

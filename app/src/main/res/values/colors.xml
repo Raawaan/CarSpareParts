@@ -79,4 +79,6 @@
     <color name="item_image_gradient_bottom">#334c4c4c</color>
     <color name="item_image_gradient_top">#00000000</color>
     <color name="green">#15AF68</color>
+    <color name="online_green">#3CB371</color>
+    <color name="offline_red">#FF0000</color>
 </resources>
